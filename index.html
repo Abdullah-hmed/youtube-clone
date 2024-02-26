@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="/Images/youtube.png">
+    <title>YouTube</title>
+    <style>
+        header {
+            padding: 10px 20px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: #606060;
+        }
+
+        .left-elements {
+            display: flex;
+            align-items: center;
+        }
+
+        #country {
+            margin-top: -20px;
+            font-size: small;
+        }
+
+        .menu {
+            padding-right: 2em;
+        }
+
+        .yt-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            padding-left: 0.2em;
+            font-weight: bold;
+            color: #212121;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            margin-right: 20px;
+            color: #606060;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        nav a:hover {
+            border-radius: 10px;
+            background-color: lightgrey;
+        }
+
+        .logo img:hover {
+            border-radius: 10px;
+            background-color: lightgrey;
+        }
+
+        .searchbar {
+            display: flex;
+            align-items: center;
+        }
+
+        .searchbar input {
+            width: 500px;
+            border-style: solid;
+            border-radius: 20px;
+            padding: 10px;
+            margin-right: 1em;
+            border-color: #cbcbcb;
+        }
+
+        .searchbar input:focus {
+            border-style: solid;
+            border-color: #cbcbcb;
+        }
+
+        .searchbar a:hover {
+            border-radius: 10px;
+            background-color: lightgrey;
+        }
+
+        .sidebar button {
+            display: block;
+            background-color: white;
+            border: none;
+            text-align: center;
+            padding: 10px 50px;
+            padding-left: 20px;
+            font-size: medium;
+            font-weight: 500;
+        }
+
+        .sidebar button:first-child {
+            margin-top: 10px;
+        }
+        .sidebar button:hover {
+            background-color: #efefef;
+            border-radius: 20px;
+        }
+
+        .sidebar {
+            height: 100vh;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            float: left;
+        }
+
+        main {
+            overflow: hidden;
+        }
+
+        .tags button{
+            padding: 10px;
+            margin: 7px;
+            background-color: #cfcfcf; 
+            border-radius: 10px;
+            border: none;
+        }
+
+        .tags button:hover {
+            border-radius: 10px;
+            background-color: #cfcfcf88;
+        }
+
+        .tags button:first-child {
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+
+        .video-grid {
+            float: left;
+            margin: 25px;
+            display: grid;
+            align-items: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .video {
+            display: block;
+        }
+
+        .video #user {
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+
+        .video-info {
+            margin-left: 20px;
+            margin-right: 20px;
+            display: flex;
+            align-items:center;
+        }
+
+        .video-info img {
+            margin-bottom: 40px;
+            margin-left: -5px;
+            border-radius: 30px;
+        }
+
+        .video-text {
+            float: left;
+        }
+
+        .video-text p {
+            margin: 0px;
+            margin-bottom: 5px;
+        }
+
+        .video-text #video-title {
+            font-size:medium;
+            font-weight: 1000;
+        }
+
+        .video-text #video-uploader {
+            font-size: small;
+        }
+
+        .video-text #video-stats {
+            font-size: small;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="left-elements">
+            <a class="menu" href="https://www.fast.com"><img src="Images/menu.png" alt="Menu Button" height="20"></a>
+            <div class="yt-logo">
+                <a href="https://www.youtube.com" class="logo"><img class="youtube-text" src="Images/yt_logo.png" alt="Menu Button" height="30"></a>
+                <p id="country">PK</p>
+            </div>
+        </div>
+        <div class="searchbar">
+            <input id="searchfield" placeholder="Search" size="30">
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><img src="Images/search.png" alt="Menu Button" height="20"></a>
+        </div>
+        <nav>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><img src="Images/upload.png" alt="Menu Button" height="20"></a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><img src="Images/notification.png" alt="Menu Button" height="20"></a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><img src="Images/user.png" alt="Menu Button" height="20"></a>
+        </nav>
+    </header>
+    <sidebar>
+        <div class="sidebar">
+            <button><i class="fa fa-home"></i> Home</button>
+            <button><i class="fa fa-youtube-play" aria-hidden="true"></i> Shorts</button>
+            <button><i class="fa fa-clipboard" aria-hidden="true"></i> Subscriptions</button>
+            <button><b>You</b> <i class="fa fa-angle-right" aria-hidden="true"></i></button>
+            <button><i class="fa fa-user-o" aria-hidden="true"></i> Your Channel</button>
+            <button><i class="fa fa-history" aria-hidden="true"></i> History</button>
+            <button><i class="fa fa-play" aria-hidden="true"></i> Your Videos</button>
+            <button><i class="fa fa-clock-o" aria-hidden="true"></i> Watch Later</button>
+            <button><i class="fa fa-angle-down" aria-hidden="true"></i> Show More</button>
+        </div>
+    </sidebar>
+
+    <main>
+        <div class="tags">
+            <button>All</button>
+            <button>Music</button>
+            <button>Gaming</button>
+            <button>Computer Programming</button>
+            <button>Computers</button>
+            <button>Mixes</button>
+            <button>Podcasts</button>
+            <button>Live</button>
+            <button>Computers</button>
+            <button>Mixes</button>
+            <button>Podcasts</button>
+            <button>Live</button>
+            <button>Mixes</button>
+            <button>Podcasts</button>
+            <button>Live</button>
+        </div>
+
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+            <div class="video-grid">
+                <div class="video">
+                    <img id="thumbnail" src="thumbnails/wallpaper.webp" width="240" height="135"><br>
+                    <div class="video-info">
+                        <img id="user" src="Images/user.png" width="30">
+                        <div class="video-text">
+                            <p id="video-title">Scenic Mountains</p>
+                            <p id="video-uploader">Abdullah</p>
+                            <p id="video-stats">100K views . 5 hours ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+            <div class="video-grid">
+                <div class="video">
+                    <img id="thumbnail" src="thumbnails/Sonic_Adventure.png" width="240" height="135"><br>
+                    <div class="video-info">
+                        <img id="user" src="Images/user.png" width="30">
+                        <div class="video-text">
+                            <p id="video-title">Sonic Adventures</p>
+                            <p id="video-uploader">Abdullah</p>
+                            <p id="video-stats">100K views . 5 hours ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+            <div class="video-grid">
+                <div class="video">
+                    <img id="thumbnail" src="thumbnails/c++.jpg" width="240" height="135"><br>
+                    <div class="video-info">
+                        <img id="user" src="Images/user.png" width="30">
+                        <div class="video-text">
+                            <p id="video-title">C++ Tutorial</p>
+                            <p id="video-uploader">Abdullah</p>
+                            <p id="video-stats">100K views . 5 hours ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+            <div class="video-grid">
+                <div class="video">
+                    <img id="thumbnail" src="thumbnails/java.png" width="240" height="135"><br>
+                    <div class="video-info">
+                        <img id="user" src="Images/user.png" width="30">
+                        <div class="video-text">
+                            <p id="video-title">Java Tutorial</p>
+                            <p id="video-uploader">Abdullah</p>
+                            <p id="video-stats">100K views . 5 hours ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+            <div class="video-grid">
+                <div class="video">
+                    <img id="thumbnail" src="thumbnails/react.png" width="240" height="135"><br>
+                    <div class="video-info">
+                        <img id="user" src="Images/user.png" width="30">
+                        <div class="video-text">
+                            <p id="video-title">Frontend Dev</p>
+                            <p id="video-uploader">Abdullah</p>
+                            <p id="video-stats">100K views . 5 hours ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+            <div class="video-grid">
+                <div class="video">
+                    <img id="thumbnail" src="thumbnails/csgo.png" width="240" height="135"><br>
+                    <div class="video-info">
+                        <img id="user" src="Images/user.png" width="30">
+                        <div class="video-text">
+                            <p id="video-title">Top 5 Best Games!</p>
+                            <p id="video-uploader">Abdullah</p>
+                            <p id="video-stats">100K views . 5 hours ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+            <div class="video-grid">
+                <div class="video">
+                    <img id="thumbnail" src="thumbnails/minecraft.png" width="240" height="135"><br>
+                    <div class="video-info">
+                        <img id="user" src="Images/user.png" width="30">
+                        <div class="video-text">
+                            <p id="video-title">Minecraft Lets Play!</p>
+                            <p id="video-uploader">Abdullah</p>
+                            <p id="video-stats">100K views . 5 hours ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </main>
+
+</body>
+
+</html>
