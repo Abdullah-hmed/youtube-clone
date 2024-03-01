@@ -178,6 +178,15 @@ main {
 
 /* Video page CSS */
 
+.youtube-video {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+}  
+
+.sidebar-video {
+    display: none;
+}
+
 .video-page-container { 
     display: flex;
     justify-content: space-between;
@@ -185,16 +194,93 @@ main {
 
 .video-and-comments {
     margin-top: 25px;
-    margin-left: 35px;
+    margin-left: 45px;
     width: 65%;
+}
+
+#video-page-title {
+    margin-top: 5px;
+    font-size: larger;
+    font-weight: bolder;
 }
 
 iframe {
     border-radius: 10px;
 }
 
+.user-and-video-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info img {
+    margin-right: 10px;
+}
+
+.acc-info p {
+    margin: 0px;
+}
+
+#acc-subs {
+    font-size: small;
+}
+
+#acc-name {
+    font-weight:600;
+}
+
+#like-button {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    margin-right: -6px;
+}
+
+#dislike-button {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-left:1px solid #c2c2c2
+}
+
+.feedback-buttons button:hover {
+    background-color: #cfcfcf88; 
+}
+
+.feedback-buttons button, #subscribe, #sort-by{
+    padding: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 0px;
+    background-color: #cfcfcf; 
+    border-radius: 20px;
+    border: none;
+}
+
+.feedback-buttons button:focus {
+    background-color: #3f3f3f;
+}
+
+.user-subs {
+    display: flex;
+    align-items: center;
+}
+
+#subscribe {
+    margin-left: 30px;
+    color: white;
+    background-color: #202020;
+}
+
+#subscribe:hover {
+    background-color: #3f3f3f;
+}
+
 .aside {
-    width: 32%;
+    width: 30%;
 }
 
 .tag-container {
@@ -203,13 +289,140 @@ iframe {
 }
 
 .suggested-container {
+    height: 100%;
     padding: 10px;
     margin-right: 20px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); */
     float: right;
 }
 
-.suggested-container .suggested-video {
+.suggested-video img {
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.suggested-video {
+    margin-top: 10px;
     display: flex;
 }
 
+.description {
+    margin-top: 11px;
+    padding: 5px;
+    padding-top: 0px;
+    padding-left: 10px;
+    border-radius: 8px;
+    background-color: #f3f3f3;
+}
+
+.description-data {
+    display: flex;
+    margin-bottom: -10px;
+}
+
+#description-date {
+    font-size: small;
+    font-weight: 600;
+    margin-right: 20px;
+}
+
+#description-tags {
+    font-size:small;
+    font-weight: 600;
+    color:#606060;
+}
+
+#description-text {
+    margin-top: 0px;
+    font-size:small;
+    color:#000000;
+}
+
+#read-more {
+    font-size: small;
+    font-weight: 600;
+}
+
+.comments {
+    display: flex;
+    align-items: center;
+}
+
+.comments-data {
+    margin-left: 10px;
+}
+
+.comments img {
+    margin-bottom: 80px;
+}
+
+.comment-name-date {
+    display: flex;
+    margin-bottom: -20px;
+}
+
+.comment-name {
+    margin-right: 10px;
+    color: #000000;
+    font-weight: 600;
+}
+
+.comment-date {
+    font-size: small;
+    margin-top: 19px;
+    color: #606060;
+}
+
+#Comments-title {
+    font-size: large;
+    font-weight: 900;
+}
+
+
+.comment-title {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+}
+
+#sort-by {
+    margin-left: 20px;
+    background-color: white;
+    font-weight: 600;
+}
+
+#sort-by:focus {
+    background-color: #dfdfdf;
+}
+
+.feedback {
+    display: flex;
+    padding: 0px;
+}
+
+.comment-feedback {
+    background-color: #ffffff;
+    border: none;
+}
+
+.comment-feedback:hover, .comment-feedback:focus {
+    background-color: #c2c2c2;
+}
+
+
+.comment-area {
+    display: flex;
+}
+
+#comment-writer {
+    margin-left: 20px;
+    border: none;
+    border-bottom: 1px solid #c7c7c7;
+    width: 100%
+    
+}
+
+#comment-writer:focus {
+    outline: none;
+    border-bottom: 1px solid #575757;
+}
