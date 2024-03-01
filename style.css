@@ -1,0 +1,215 @@
+header {
+    padding: 10px 20px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: #606060;
+}
+
+.left-elements {
+    display: flex;
+    align-items: center;
+}
+
+#country {
+    margin-top: -20px;
+    font-size: small;
+}
+
+.menu {
+    padding-right: 2em;
+}
+
+.yt-logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5em;
+    padding-left: 0.2em;
+    font-weight: bold;
+    color: #212121;
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav a {
+    margin-right: 20px;
+    color: #606060;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+nav a:hover {
+    border-radius: 10px;
+    background-color: lightgrey;
+}
+
+.searchbar {
+    display: flex;
+    align-items: center;
+}
+
+.searchbar input {
+    width: 500px;
+    border-style: solid;
+    border-radius: 20px;
+    padding: 10px;
+    margin-right: 1em;
+    border-color: #cbcbcb;
+}
+
+.searchbar input:focus {
+    border-style: solid;
+    border-color: #cbcbcb;
+}
+
+.searchbar a:hover {
+    border-radius: 10px;
+    background-color: lightgrey;
+}
+
+.sidebar button {
+    display: block;
+    background-color: white;
+    border: none;
+    text-align: center;
+    padding: 10px 50px;
+    padding-left: 20px;
+    font-size: medium;
+    font-weight: 500;
+}
+
+.sidebar button:first-child {
+    margin-top: 10px;
+}
+.sidebar button:hover {
+    background-color: #efefef;
+    border-radius: 20px;
+}
+
+.sidebar {
+    height: 100vh;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    float: left;
+}
+
+main {
+    overflow: hidden;
+}
+
+.tags button{
+    padding: 10px;
+    margin: 7px;
+    background-color: #cfcfcf; 
+    border-radius: 10px;
+    border: none;
+}
+
+.tags button:hover {
+    border-radius: 10px;
+    background-color: #cfcfcf88;
+}
+
+.tags button:first-child {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.video-grid {
+    float: left;
+    margin: 25px;
+    display: grid;
+    align-items: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.video {
+    display: block;
+}
+
+.user {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.video-info {
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex;
+    align-items:center;
+}
+
+.video-info img {
+    margin-bottom: 40px;
+    margin-left: -5px;
+    margin-right: 10px;
+    border-radius: 30px;
+}
+
+.video-text {
+    float: left;
+}
+
+.video-text p {
+    margin: 0px;
+    margin-bottom: 5px;
+}
+
+.video-title {
+    font-size:medium;
+    font-weight: 1000;
+}
+
+.video-uploader {
+    font-size: small;
+}
+
+.video-stats {
+    font-size: small;
+}
+
+/* Video page CSS */
+
+.video-page-container { 
+    display: flex;
+    justify-content: space-between;
+}
+
+.video-and-comments {
+    margin-top: 25px;
+    margin-left: 35px;
+    width: 65%;
+}
+
+iframe {
+    border-radius: 10px;
+}
+
+.aside {
+    width: 32%;
+}
+
+.tag-container {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.suggested-container {
+    padding: 10px;
+    margin-right: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    float: right;
+}
+
+.suggested-container .suggested-video {
+    display: flex;
+}
+
