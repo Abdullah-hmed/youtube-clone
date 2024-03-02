@@ -33,6 +33,10 @@ main {
     padding-right: 2em;
 }
 
+#video-menu {
+    padding-right: 2em;
+}
+
 .yt-logo {
     display: flex;
     align-items: center;
