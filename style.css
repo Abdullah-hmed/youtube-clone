@@ -1,12 +1,24 @@
 header {
+    background-color: #ffffff;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 98%;
     padding: 10px 20px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: #606060;
+    position: fixed;
 }
 
+main {
+    margin-top: 60px;
+}
+
+#frontpage {
+    margin-left: 200px;
+}
 .left-elements {
     display: flex;
     align-items: center;
@@ -96,6 +108,8 @@ nav a:hover {
 }
 
 .sidebar {
+    background-color: #ffffff;
+    position: fixed;
     height: 100vh;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     float: left;
@@ -291,7 +305,7 @@ iframe {
 .suggested-container {
     height: 100%;
     padding: 10px;
-    margin-right: 20px;
+    margin-right: 50px;
     /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); */
     float: right;
 }
@@ -412,17 +426,50 @@ iframe {
 
 .comment-area {
     display: flex;
+    align-items: center;
 }
 
 #comment-writer {
     margin-left: 20px;
     border: none;
     border-bottom: 1px solid #c7c7c7;
-    width: 100%
+    width: 1000px
     
 }
 
 #comment-writer:focus {
     outline: none;
     border-bottom: 1px solid #575757;
+    transition: border 0.3s ease;
+}
+
+.comment-write {
+    display: block;
+}
+
+.comment-submit {
+    display: none;
+    justify-content: space-between;
+}
+
+.comment-submit button {
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.comment-submit button:hover{
+    background-color: #cbcbcb;
+}
+
+.comment-cancel button:focus{
+    display: flex;
+}
+
+.comment-submit button {
+    margin: 10px;
+}
+
+#comment-writer:focus + .comment-submit {
+    display: flex;
 }
