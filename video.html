@@ -10,7 +10,7 @@
 <body>
     <header>
         <div class="left-elements">
-            <a class="menu" href="https://www.fast.com"><img src="Images/menu.png" alt="Menu Button" height="20"></a>
+            <a id="video-menu" href="https://www.fast.com"><img src="Images/menu.png" alt="Menu Button" height="20"></a>
             <div class="yt-logo">
                 <a href="index.html" class="logo"><img class="youtube-text" src="Images/yt_logo.png" alt="Menu Button" height="30"></a>
                 <p id="country">PK</p>
@@ -21,14 +21,14 @@
             <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><img src="Images/search.png" alt="Search Button" height="20"></a>
         </div>
         <nav>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><img src="Images/upload.png" alt="Menu Button" height="20"></a>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><img src="Images/notification.png" alt="Menu Button" height="20"></a>
+            <a class="omittable-button" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><img src="Images/upload.png" alt="Menu Button" height="20"></a>
+            <a class="omittable-button" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><img src="Images/notification.png" alt="Menu Button" height="20"></a>
             <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><img src="Images/user.png" alt="Menu Button" height="20"></a>
         </nav>
     </header>
 
-    <sidebar>
-        <div class="sidebar-video">
+    <!-- <sidebar id="video-sidebar">
+        <div>
             <button><i class="fa fa-home"></i> Home</button>
             <button><i class="fa fa-youtube-play" aria-hidden="true"></i> Shorts</button>
             <button><i class="fa fa-clipboard" aria-hidden="true"></i> Subscriptions</button>
@@ -39,7 +39,7 @@
             <button><i class="fa fa-clock-o" aria-hidden="true"></i> Watch Later</button>
             <button><i class="fa fa-angle-down" aria-hidden="true"></i> Show More</button>
         </div>
-    </sidebar>
+    </sidebar> -->
 
     <main class="video-page-container">
         <div class="video-and-comments">
@@ -62,10 +62,10 @@
                 <div class="feedback-buttons">
                     <button id="like-button"><i class="fa fa-thumbs-up"></i> 114K</button>
                     <button id="dislike-button"><i class="fa fa-thumbs-down fa-flip-horizontal"></i></button>
-                    <button><i class="fa fa-share"></i> Share</button>
-                    <button><i class="fa fa-download"></i> Download</button>
-                    <button><i class="fa fa-scissors"></i> Clip</button>
-                    <button><i class="fa fa-ellipsis-h"></i></button>
+                    <button class="omittable-button"><i class="fa fa-share"></i> Share</button>
+                    <button class="omittable-button"><i class="fa fa-download"></i> Download</button>
+                    <button class="omittable-button"><i class="fa fa-scissors"></i> Clip</button>
+                    <button class="omittable-button"><i class="fa fa-ellipsis-h"></i></button>
                 </div>
             </div>
             <div class="description">

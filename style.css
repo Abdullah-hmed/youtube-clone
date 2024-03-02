@@ -190,6 +190,116 @@ main {
     font-size: small;
 }
 
+@media (max-width: 768px) {
+    /* For mobile phones: */
+
+    .tags {
+        display: none;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    #frontpage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0px !important;
+    }
+
+    .video .thumbnail {
+        /* aspect-ratio: 16/9; */
+        width: 350px;
+        height: auto;
+    }
+
+    .video {
+        width: 100%;
+    }
+
+    #searchfield {
+        display: none;
+    }
+
+    .user-and-video-info {
+        align-items: center;
+    }
+
+    .video-page-container {
+        display: block !important;
+        align-items: center;
+    }
+
+    .youtube-video {
+        height: 100%;
+    }
+
+    .video-and-comments {
+        width: 100% !important;
+        margin-left: 0px !important;
+    }
+
+    .aside {
+        margin: auto;
+        width: 50%;
+    }
+
+
+    .suggested-container {
+        display: flex;
+        flex-direction: column;
+        margin-right: 15px !important;
+        width:90%;
+        padding: 0px !important;
+    }
+
+
+    .suggested-video {
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        margin: auto;
+        width: 100%;
+        display: block !important;
+    }
+
+    .suggested-video img {
+        width: 100%;
+        height: auto;
+    }
+
+    .user-subs {
+        width: 20%;
+    }
+
+    .feedback-buttons {
+        margin-bottom: 0px;
+        margin-right: 20px;
+    }
+
+    .feedback-buttons {
+        margin: 0;
+    }
+
+    .omittable-button {
+        display: none;
+        width: 10%;
+    }
+
+    #description-text-minimal {
+        font-size: small;
+    }
+
+    .comment-text {
+        font-size: small;
+        margin-bottom: 0px;
+    }
+
+    .searchbar a:hover + #searchfield {
+        display: block;
+    }
+}
+  
+
 /* Video page CSS */
 
 .youtube-video {
@@ -197,9 +307,6 @@ main {
     width: 100%;
 }  
 
-.sidebar-video {
-    display: none;
-}
 
 .video-page-container { 
     display: flex;
@@ -274,9 +381,6 @@ iframe {
     border: none;
 }
 
-.feedback-buttons button:focus {
-    background-color: #3f3f3f;
-}
 
 .user-subs {
     display: flex;
@@ -472,4 +576,8 @@ iframe {
 
 #comment-writer:focus + .comment-submit {
     display: flex;
+}
+
+#video-menu, #video-sidebar {
+    display: block;
 }
