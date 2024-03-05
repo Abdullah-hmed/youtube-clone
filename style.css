@@ -30,7 +30,7 @@ main {
 }
 
 .menu {
-    padding-right: 2em;
+    margin-right: 2em;
 }
 
 #video-menu {
@@ -77,18 +77,35 @@ nav a:hover {
     width: 500px;
     border-style: solid;
     border-radius: 20px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
     padding: 10px;
-    margin-right: 1em;
+    /* margin-right: 1em; */
     border-color: #cbcbcb;
+    border-width: 1px;
 }
 
 .searchbar input:focus {
     border-style: solid;
-    border-color: #cbcbcb;
+}
+
+.searchbar a {
+    border-radius: 5em;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    padding-bottom: 6px;
+    padding-top: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px outset buttonborder;
+    border-color: #cbcbcbcb;
+    border-left-color: #cbcbcbcb;
+    background-color: #f3f3f3;
+    margin-left: -1px;
+    border-style: solid;
 }
 
 .searchbar a:hover {
-    border-radius: 10px;
     background-color: lightgrey;
 }
 
@@ -196,6 +213,14 @@ main {
 
 @media (max-width: 768px) {
     /* For mobile phones: */
+
+
+    .searchbar a {
+        border-radius: 30px;
+        padding-bottom: 0px;
+        padding: 10px;
+        border: none;
+    }
 
     .tags {
         display: none;
