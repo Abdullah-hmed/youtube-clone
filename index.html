@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" type="image/x-icon" href="/Images/youtube.png">
+    <link rel="icon" type="image/x-icon" href="Images/youtube.png">
     <title>YouTube</title>
 </head>
 
 <body>
     <header>
         <div class="left-elements">
-            <a class="menu" href="https://www.fast.com"><img src="Images/menu.png" alt="Menu Button" height="20"></a>
+            <button onclick="hideSidebar()" class="menu"><img src="Images/menu.png" alt="Menu Button" height="20"></button>
             <div class="yt-logo">
-                <a href="https://www.youtube.com" class="logo"><img class="youtube-text" src="Images/yt_logo.png" alt="Menu Button" height="30"></a>
+                <a href="https://www.youtube.com" class="logo"><img class="youtube-text" src="Images/yt_logo.png" alt="Menu Button" height="25"></a>
                 <p id="country">PK</p>
             </div>
         </div>
@@ -31,15 +31,22 @@
     </header>
     <sidebar>
         <div class="sidebar">
-            <button><i class="fa fa-home"></i> Home</button>
-            <button><i class="fa fa-youtube-play" aria-hidden="true"></i> Shorts</button>
-            <button><i class="fa fa-clipboard" aria-hidden="true"></i> Subscriptions</button>
-            <button><b>You</b> <i class="fa fa-angle-right" aria-hidden="true"></i></button>
-            <button><i class="fa fa-user-o" aria-hidden="true"></i> Your Channel</button>
-            <button><i class="fa fa-history" aria-hidden="true"></i> History</button>
-            <button><i class="fa fa-play" aria-hidden="true"></i> Your Videos</button>
-            <button><i class="fa fa-clock-o" aria-hidden="true"></i> Watch Later</button>
-            <button><i class="fa fa-angle-down" aria-hidden="true"></i> Show More</button>
+            <button class="sidebar-max"><i class="fa fa-home"></i> Home</button>
+            <button class="sidebar-max"><i class="fa fa-youtube-play" aria-hidden="true"></i> Shorts</button>
+            <button class="sidebar-max"><i class="fa fa-clipboard" aria-hidden="true"></i> Subscriptions</button>
+            <button class="sidebar-max"><b>You</b> <i class="fa fa-angle-right" aria-hidden="true"></i></button>
+            <button class="sidebar-max"><i class="fa fa-user-o" aria-hidden="true"></i> Your Channel</button>
+            <button class="sidebar-max"><i class="fa fa-history" aria-hidden="true"></i> History</button>
+            <button class="sidebar-max"><i class="fa fa-play" aria-hidden="true"></i> Your Videos</button>
+            <button class="sidebar-max"><i class="fa fa-clock-o" aria-hidden="true"></i> Watch Later</button>
+            <button class="sidebar-max" onclick="showMore()"><i class="fa fa-angle-down" aria-hidden="true"></i> Show More</button>
+            <button class="sidebar-min"><i class="fa fa-home" aria-hidden="true"></i><p>Home</p></button>
+            <button class="sidebar-min"><i class="fa fa-youtube-play" aria-hidden="true"></i><p>You</p></button>
+
+
+            <div id="show-more">
+                <button><i class="fa fa-thumbs-up" aria-hidden="true"></i> Liked Videos</button>
+            </div>
         </div>
     </sidebar>
 
@@ -168,7 +175,7 @@
             </div>
         </a>
     </main>
-
+    <script src="script.js"></script>
 </body>
 
 </html>

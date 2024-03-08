@@ -1,3 +1,7 @@
+body button:hover {
+    cursor: pointer;
+}
+
 header {
     background-color: #ffffff;
     top: 0;
@@ -136,8 +140,37 @@ nav a:hover {
     float: left;
 }
 
+.sidebar .sidebar-min {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    display: none;
+}
+
+.sidebar .sidebar-min:first-child {
+    margin-top: 10px;
+}
+
+#show-more {
+    display: none;
+}
+
 main {
     overflow: hidden;
+}
+
+.menu {
+    padding-top: 5px;
+    padding-bottom: 3px;
+    border: none;
+    background-color: white;
+}
+
+.menu:hover {
+    background-color: lightgrey;
+    border-radius: 50%;
 }
 
 .tags button{
