@@ -38,7 +38,7 @@ main {
 }
 
 #video-menu {
-    padding-right: 2em;
+    margin-right: 2em;
 }
 
 .yt-logo {
@@ -113,7 +113,7 @@ nav a:hover {
     background-color: lightgrey;
 }
 
-.sidebar button {
+.sidebar button, #video-sidebar button {
     display: block;
     background-color: white;
     border: none;
@@ -124,20 +124,32 @@ nav a:hover {
     font-weight: 500;
 }
 
+#video-sidebar {
+    display: none;
+}
+
+#video-sidebar:first-of-type {
+    padding-top: 10px;
+}
+
 .sidebar button:first-child {
     margin-top: 10px;
 }
+
 .sidebar button:hover {
     background-color: #efefef;
     border-radius: 20px;
 }
 
-.sidebar {
+.sidebar, #video-sidebar {
+    top: 56px;
+    left: 0;
     background-color: #ffffff;
     position: fixed;
     height: 100vh;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     float: left;
+    z-index: 10;
 }
 
 .sidebar .sidebar-min {
@@ -147,10 +159,6 @@ nav a:hover {
     padding-right: 15px;
     width: 100%;
     display: none;
-}
-
-.sidebar .sidebar-min:first-child {
-    margin-top: 10px;
 }
 
 #show-more {
@@ -640,6 +648,3 @@ iframe {
     display: flex;
 }
 
-#video-menu, #video-sidebar {
-    display: block;
-}

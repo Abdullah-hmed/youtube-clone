@@ -33,3 +33,16 @@ function showMore() {
     show.style.display = "block";
   }
 }
+
+function displaySidebar(){
+  var sidebar = document.getElementById("video-sidebar");
+  if(sidebar.style.display == "block"){
+    sidebar.style.display = "none";
+    document.querySelector("main").style.opacity = "100%";
+    document.querySelector("main").style.pointerEvents = "auto";
+  } else{
+    sidebar.style.display = "block";
+    document.querySelector("main").style.opacity = "50%";
+    document.querySelector("main").style.pointerEvents = "none";
+  }
+}

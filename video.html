@@ -5,14 +5,16 @@
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="Images/youtube.png">
     <title>Video Page</title>
 </head>
 <body>
+    <script src="script.js"></script>
     <header>
         <div class="left-elements">
-            <a id="video-menu" href="https://www.fast.com"><img src="Images/menu.png" alt="Menu Button" height="20"></a>
+            <button class="menu" onclick="displaySidebar()"><img src="Images/menu.png" alt="Menu Button" height="20"></button>
             <div class="yt-logo">
-                <a href="index.html" class="logo"><img class="youtube-text" src="Images/yt_logo.png" alt="Menu Button" height="30"></a>
+                <a href="index.html" class="logo"><img class="youtube-text" src="Images/yt_logo.png" alt="Menu Button" height="25"></a>
                 <p id="country">PK</p>
             </div>
         </div>
@@ -27,7 +29,7 @@
         </nav>
     </header>
 
-    <!-- <sidebar id="video-sidebar">
+    <sidebar id="video-sidebar">
         <div>
             <button><i class="fa fa-home"></i> Home</button>
             <button><i class="fa fa-youtube-play" aria-hidden="true"></i> Shorts</button>
@@ -37,13 +39,18 @@
             <button><i class="fa fa-history" aria-hidden="true"></i> History</button>
             <button><i class="fa fa-play" aria-hidden="true"></i> Your Videos</button>
             <button><i class="fa fa-clock-o" aria-hidden="true"></i> Watch Later</button>
-            <button><i class="fa fa-angle-down" aria-hidden="true"></i> Show More</button>
+            <button onclick="showMore()"><i class="fa fa-angle-down" aria-hidden="true"></i> Show More</button>
+
+            <div id="show-more">
+                <button><i class="fa fa-thumbs-up" aria-hidden="true"></i> Liked Videos</button>
+            </div>
         </div>
-    </sidebar> -->
+        
+    </sidebar>
 
     <main class="video-page-container">
         <div class="video-and-comments">
-            <iframe class="youtube-video" width="1170" height="610" src="https://www.youtube.com/embed/tv-_1er1mWI" title="10 Design Patterns Explained in 10 Minutes" 
+            <iframe class="youtube-video" src="https://www.youtube.com/embed/tv-_1er1mWI" title="10 Design Patterns Explained in 10 Minutes" 
             frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             <p id="video-page-title">10 Design Patterns Explained in 10 Minutes</p>
             <div class="user-and-video-info">
