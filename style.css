@@ -55,8 +55,8 @@ main {
 }
 
 nav {
-    display: flex;
-    align-items: center;
+    /* display: flex;
+    align-items: center; */
 }
 
 nav a {
@@ -72,9 +72,51 @@ nav a:hover {
     background-color: lightgrey;
 }
 
-.searchbar {
+.user:focus + .dropdown {
+    display: flex;
+}
+
+.dropdown {
+    top: 40px;
+    right: 25px;
+    background-color: white;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    padding: 10px;
+    border: 1px solid #cfcfcf;
+    border-radius: 20px;
+}
+
+.user-menu-button {
     display: flex;
     align-items: center;
+}
+
+.user-name {
+    margin: 10px;
+}
+
+.user-name p {
+    font-weight: bold;
+    color: #3e3e3e;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+    margin-bottom: 10px;
+}
+
+.user-name a {
+    color: #3ea6ff;
+}
+
+.google-account, .switch-account, .sign-out {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: none;
 }
 
 .searchbar input {
@@ -93,6 +135,10 @@ nav a:hover {
     border-style: solid;
 }
 
+.searchbar {
+    display: flex;
+}
+
 .searchbar a {
     border-radius: 5em;
     border-top-left-radius: 0px;
@@ -105,7 +151,7 @@ nav a:hover {
     border-color: #cbcbcbcb;
     border-left-color: #cbcbcbcb;
     background-color: #f3f3f3;
-    margin-left: -1px;
+    margin-left: -6px;
     border-style: solid;
 }
 
