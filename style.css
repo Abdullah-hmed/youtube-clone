@@ -483,6 +483,7 @@ iframe {
     border-left:1px solid #c2c2c2
 }
 
+
 .feedback-buttons button:hover {
     background-color: #cfcfcf88; 
 }
@@ -653,7 +654,7 @@ iframe {
     margin-left: 20px;
     border: none;
     border-bottom: 1px solid #c7c7c7;
-    width: 1000px
+    width: 55vw;
     
 }
 
@@ -668,7 +669,7 @@ iframe {
 }
 
 .comment-submit {
-    display: none;
+    display: flex;
     justify-content: space-between;
 }
 
@@ -682,15 +683,15 @@ iframe {
     background-color: #cbcbcb;
 }
 
-.comment-cancel button:focus{
+/* .comment-cancel button:focus{
     display: flex;
-}
+} */
 
 .comment-submit button {
     margin: 10px;
 }
 
-#comment-writer:focus + .comment-submit {
+/* #comment-writer:focus + .comment-submit {
     display: flex;
-}
+} */
 
