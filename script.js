@@ -54,7 +54,7 @@ function printCurrentTime(){
 }
 
 function handleKeyPress(event){
-  if(event.keyCode == 13){
+  if(event.keyCode == 13 && document.getElementById("comment-writer").value != ""){
     makeComment();
   }
 }
