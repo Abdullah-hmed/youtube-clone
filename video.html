@@ -107,7 +107,7 @@
 
                 <p id="read-more">... more</p>
             </div>
-            <div class="comments-container">
+            <div class="comments-section">
                 <div class="comment-title">
                     <p id="Comments-title">911 Comments</p>
                     <button id="sort-by"><i class="fa fa-sort"></i> Sort By</button>
@@ -115,7 +115,7 @@
                 <div class="comment-area">
                     <img src="/youtube-clone/Images/user.png" width="40px">
                     <div class="comment-write">
-                        <input type="text" name="comment-writer" id="comment-writer" placeholder="Add a comment...">
+                        <input type="text" name="comment-writer" id="comment-writer" onkeypress="handleKeyPress(event)" placeholder="Add a comment...">
                         <div class="comment-submit">
                             <button>😊</button>
                             <div class="comment-cancel">
@@ -126,7 +126,23 @@
                     </div>
                 </div>
                 <br>
-                <div class="comments">
+                <div class="comments-container">
+                    <div class="comments">
+                        <img src="/youtube-clone/Images/user.png" width="30px">
+                        <div class="comments-data">
+                            <div class="comment-name-date">
+                                <p class="comment-name">Abdullah</p>
+                                <p class="comment-date">1 year ago</p>
+                            </div>
+                            <p class="comment-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita, aspernatur repellendus cupiditate deleniti itaque rerum natus, porro atque similique eum dignissimos? Commodi adipisci voluptas at atque quis exercitationem dolorem nihil!</p>
+                            <div class="feedback">
+                                <button class="comment-feedback"><i class="fa fa-thumbs-up"></i></button>
+                                <button class="comment-feedback"><i class="fa fa-thumbs-down fa-flip-horizontal"></i></button>
+                                <button class="comment-feedback"><p>Reply</p></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comments">
                     <img src="/youtube-clone/Images/user.png" width="30px">
                     <div class="comments-data">
                         <div class="comment-name-date">
@@ -141,21 +157,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="comments">
-                    <img src="/youtube-clone/Images/user.png" width="30px">
-                    <div class="comments-data">
-                        <div class="comment-name-date">
-                            <p class="comment-name">Abdullah</p>
-                            <p class="comment-date">1 year ago</p>
-                        </div>
-                        <p class="comment-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita, aspernatur repellendus cupiditate deleniti itaque rerum natus, porro atque similique eum dignissimos? Commodi adipisci voluptas at atque quis exercitationem dolorem nihil!</p>
-                        <div class="feedback">
-                            <button class="comment-feedback"><i class="fa fa-thumbs-up"></i></button>
-                            <button class="comment-feedback"><i class="fa fa-thumbs-down fa-flip-horizontal"></i></button>
-                            <button class="comment-feedback"><p>Reply</p></button>
-                        </div>
-                    </div>
-                </div>
+            </div>
             </div>
         </div>
         <aside>

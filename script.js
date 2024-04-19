@@ -47,9 +47,21 @@ function displaySidebar(){
   }
 }
 
+function printCurrentTime(){
+  var currentDate = new Date();
+  time = currentDate.toLocaleString();
+  return time;
+}
+
+function handleKeyPress(event){
+  if(event.keyCode == 13){
+    makeComment();
+  }
+}
+
 function makeComment(){
   const commentContainer = document.querySelector(".comments-container");
-  var commentText = document.getElementById("comment-writer").value;
+  var commentText = document.getElementById("comment-writer");
   console.log(commentText);
   var commentHTML = `
                 <div class="comments">
@@ -57,9 +69,9 @@ function makeComment(){
                   <div class="comments-data">
                       <div class="comment-name-date">
                           <p class="comment-name">User</p>
-                          <p class="comment-date">Just Now</p>
+                          <p class="comment-date">`+printCurrentTime()+`</p>
                       </div>
-                      <p class="comment-text">`+commentText+`</p>
+                      <p class="comment-text">`+commentText.value+`</p>
                       <div class="feedback">
                           <button class="comment-feedback"><i class="fa fa-thumbs-up"></i></button>
                           <button class="comment-feedback"><i class="fa fa-thumbs-down fa-flip-horizontal"></i></button>
@@ -68,5 +80,6 @@ function makeComment(){
                   </div>
                 </div>`
                 ;
-  commentContainer.innerHTML += commentHTML;
+  commentContainer.insertAdjacentHTML('afterbegin', commentHTML);
+  commentText.value = "";
 }
