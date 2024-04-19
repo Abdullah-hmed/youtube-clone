@@ -53,7 +53,7 @@ function printCurrentTime(){
   return time;
 }
 
-function handleKeyPress(event){
+function handleCommentWriter(event){ //method to call makeComment method when user presses enter on textfield
   if(event.keyCode == 13 && document.getElementById("comment-writer").value != ""){
     makeComment();
   }
