@@ -83,3 +83,9 @@ function makeComment(){
   commentContainer.insertAdjacentHTML('afterbegin', commentHTML);
   commentText.value = "";
 }
+
+function onUserInfoClick(){
+  // document.querySelector('.dropdown').style.display = 'flex';
+  const dropdown = document.querySelector('.dropdown');
+  dropdown.classList.toggle("open-menu");
+}

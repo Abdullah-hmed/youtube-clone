@@ -72,20 +72,24 @@ nav a:hover {
     background-color: lightgrey;
 }
 
-.user:focus + .dropdown {
-    display: flex;
+.dropdown.open-menu {
+    max-height: 400px;
+    padding: 10px
 }
 
 .dropdown {
     top: 40px;
     right: 25px;
     background-color: white;
-    display: none;
+    display: flex;
     flex-direction: column;
     position: absolute;
-    padding: 10px;
-    border: 1px solid #cfcfcf;
+    /* border: 1px solid #cfcfcf; */
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
+    padding: 0px;
+    max-height: 0px;
+    overflow: hidden;
 }
 
 .user-menu-button {
@@ -106,7 +110,7 @@ nav a:hover {
 }
 
 .user-name a {
-    color: #3ea6ff;
+    color: #065fd4;
 }
 
 .google-account, .switch-account, .sign-out {
