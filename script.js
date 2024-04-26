@@ -1,3 +1,6 @@
+
+
+
 function hideSidebar() {
 
   var sidebar = document.querySelector("sidebar");

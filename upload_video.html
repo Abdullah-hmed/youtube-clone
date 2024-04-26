@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Upload Video</title>
+</head>
+<body style="background-color: rgb(230, 230, 230);">
+    <img id="upload-yt" src="Images/yt_logo.png" alt="Menu Button">
+    <form action="upload_video.php" method="post">
+        <div class="video-upload-form">
+            <label for="video-file">Choose Video: </label><input type="file" accept="video/*" class="video-choose-button" name="video_file" id="video_file">
+            <label for="video-title">Add Title: </label><input type="text" name="video_title" id="video_title">
+            <label for="video-description">Add Description:</label><textarea name="video_description" id="video_description" cols="50" rows="10"></textarea>
+            <button type="submit">Upload Video</button>
+        </div>
+    </form>
+</body>
+</html>

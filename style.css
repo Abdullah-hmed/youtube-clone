@@ -54,11 +54,6 @@ main {
     text-decoration: none;
 }
 
-nav {
-    /* display: flex;
-    align-items: center; */
-}
-
 nav a {
     margin-right: 20px;
     color: #606060;
@@ -74,7 +69,8 @@ nav a:hover {
 
 .dropdown.open-menu {
     max-height: 400px;
-    padding: 10px
+    padding: 10px;
+    transition: all 0.5s;
 }
 
 .dropdown {
@@ -254,11 +250,20 @@ main {
     margin: 25px;
     display: grid;
     align-items: center;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); */
 }
 
 .video {
     display: block;
+}
+
+.video img {
+    border-radius: 10px;
+}
+
+.video img:hover{
+    transition:all 0.2s;
+    border-radius: 0%;
 }
 
 .user {
@@ -695,7 +700,42 @@ iframe {
     margin: 10px;
 }
 
-/* #comment-writer:focus + .comment-submit {
+/* Upload Video CSS */
+#upload-yt {
+    width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    
+}
+.video-upload-form {
+    background-color: white;
     display: flex;
-} */
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    gap: 10px;
+    padding: 30px;
+    margin: 0 auto;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
 
+.video-upload-form label {
+    font-family: 'Monsterrat';
+    font-weight: bold;
+    color: #606060;
+    font-size: x-large; 
+}
+
+.video-upload-form button {
+    padding: 10px 30px 10px 30px;
+    font-size: large;
+    font-family: 'Montserrat';
+    background-color: rgb(234, 234, 234);
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
