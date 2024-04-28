@@ -7,27 +7,34 @@
         $video_file = $_FILES["video_file"];
         echo '<pre>';
         print_r($video_file); //print all attributes
-        $file = file_get_contents($video_file['tmp_name']);
+        
+        $newFileName = uniqid('', true).'.mp4';
+        $video_directory = "uploaded_videos/".$newFileName;
+        
         if($video_file["size"] == 0){ //does file exist
             echo 'File does not exist!';
+            $conn->close();
+            header('refresh: 3;index.html');
+            exit;
         }
 
-        if($video_file["size"] > 1853177){
-            echo '<p style="color: red;">File is too large!</p>';
-        }
 
         if($video_file["type"] == 'video/mp4'){ //check if video is uploaded.
             echo 'valid file format';
         } else{
             echo 'invalid file format';
+            $conn->close();
+            header('refresh: 3;index.html');
+            exit;
         }
 
-        $sqlQuery = "Insert into video(video_title, video_description, video_file) values(?, ?, ?)";
+        $sqlQuery = "Insert into video(video_title, video_description, video_directory) values(?, ?, ?)";
 
         $stmt = $conn->prepare($sqlQuery);
-        $stmt->bind_param("sss",$video_title, $video_description, $file);
+        $stmt->bind_param("sss",$video_title, $video_description, $video_directory);
 
         if ($stmt->execute()) {
+            move_uploaded_file($video_file["tmp_name"], $video_directory);
             echo '<p style="color: green;">Data Added Successfully!</p>';
         } else {
             echo "Error: " . $stmt->error;
