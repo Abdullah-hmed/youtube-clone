@@ -109,14 +109,18 @@ nav a:hover {
     color: #065fd4;
 }
 
-.google-account, .switch-account, .sign-out {
+.google-account, .switch-account, .sign-out, .sign-up {
     display: flex;
     justify-content:space-between;
     align-items: center;
-    margin-top: 15px;
+    margin-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
     border: none;
+}
+
+.sign-up i {
+    margin-top: 2px;
 }
 
 .searchbar input {
@@ -701,7 +705,7 @@ iframe {
 }
 
 /* Upload Video CSS */
-#upload-yt {
+.upload-yt {
     width: 200px;
     display: block;
     margin-left: auto;
@@ -710,7 +714,7 @@ iframe {
     margin-bottom: 20px;
     
 }
-.video-upload-form {
+.video-upload-form, .signup-form {
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -724,14 +728,14 @@ iframe {
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
-.video-upload-form label {
+.video-upload-form label, .signup-form label {
     font-family: 'Monsterrat';
     font-weight: bold;
     color: #606060;
     font-size: x-large; 
 }
 
-.video-upload-form button {
+.video-upload-form button, .signup-form button {
     padding: 10px 30px 10px 30px;
     font-size: large;
     font-family: 'Montserrat';
@@ -739,3 +743,6 @@ iframe {
     border: none;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
+
+
+/* Sign Up Code */

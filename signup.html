@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"/>
+    <title>Sign Up | Youtube</title>
+</head>
+<body style="background-color: rgb(230, 230, 230);">
+    <a href="index.html"><img class="upload-yt" src="Images/yt_logo.png" alt="Menu Button"></a>
+    <form action="signup.php" method="post" enctype="multipart/form-data">
+        <div class="signup-form">
+            <label for="pfp">Profile Picture:</label><input type="file" accept="image/*" style="margin-left: 70px;" name="pfp" id="pfp">
+            <label for="username">User Name:</label><input type="text" name="username" id="username" required>
+            <label for="email">Email:</label><input type="email" name="email" id="email" required>
+            <label for="password">Password:</label><input type="password" name="password" id="password" required>
+            <button type="submit" name="submit" value="submit">Sign Up!</button>
+        </div>
+    </form>
+</body>
+</html>

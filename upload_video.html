@@ -7,10 +7,10 @@
     <title>Upload Video</title>
 </head>
 <body style="background-color: rgb(230, 230, 230);">
-    <a href="index.html"><img id="upload-yt" src="Images/yt_logo.png" alt="Menu Button"></a>
+    <a href="index.html"><img class="upload-yt" src="Images/yt_logo.png" alt="Menu Button"></a>
     <form action="upload_video.php" method="POST" enctype="multipart/form-data">
         <div class="video-upload-form">
-            <label for="video-file">Choose Video: </label><input type="file" accept="video/*" class="video-choose-button" name="video_file" id="video_file">
+            <label for="video-file">Choose Video: </label><input type="file" style="margin-left: 70px;" accept="video/*" class="video-choose-button" name="video_file" id="video_file">
             <label for="video-title">Add Title: </label><input type="text" name="video_title" id="video_title">
             <label for="video-description">Add Description:</label><textarea name="video_description" id="video_description" cols="50" rows="10"></textarea>
             <button type="submit" name="submit">Upload Video</button>
