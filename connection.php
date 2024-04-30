@@ -10,6 +10,6 @@
         echo 'Connection Failed :(';
         echo $conn->connect_error;
     } else{
-        echo 'Connection Successful!';
+        echo 'Connection Successful!<br>';
     }
 ?>

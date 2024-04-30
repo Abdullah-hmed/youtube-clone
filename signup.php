@@ -24,6 +24,8 @@
         header('refresh: 3;signup.html');
     }
 
+    //TODO: VALIDATE FOR IF USERNAME ALREADY EXISTS
+
     //check for whitespace in username
     if(!preg_match('/^\S*$/', $username)){
         echo '<p style="color: red;">Remove Whitespace from username!</p>';
@@ -53,5 +55,5 @@
     } else {
         echo "Error: " . $stmt->error;
     }
-    // header('refresh: 3;signup.html');
+    header('refresh: 3;index.html');
 ?>
