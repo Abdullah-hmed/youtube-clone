@@ -44,5 +44,5 @@
         echo '<p style="color: red;">Error uploading video.</p>';
     }
     $conn->close();
-    header('refresh: 3;index.html');
+    header('refresh: 3;index.php');
 ?>

@@ -55,5 +55,5 @@
     } else {
         echo "Error: " . $stmt->error;
     }
-    header('refresh: 3;index.html');
+    header('refresh: 3;index.php');
 ?>

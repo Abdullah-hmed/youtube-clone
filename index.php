@@ -1,3 +1,6 @@
+<?php 
+    // session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,51 +15,9 @@
 
 <body>
     <script src="script.js"></script>
-    <header>
-        <div class="left-elements">
-            <button onclick="hideSidebar()" class="menu"><img src="Images/menu.png" alt="Menu Button" height="20"></button>
-            <div class="yt-logo">
-                <a href="https://www.youtube.com" class="logo"><img class="youtube-text" src="Images/yt_logo.png" alt="Menu Button" height="25"></a>
-                <p id="country">PK</p>
-            </div>
-        </div>
-        <div class="searchbar">
-            <input id="searchfield" placeholder="Search" size="30">
-            <a href="video.html"><img src="Images/search.png" alt="Search Button" height="20"></a>
-        </div>
-        <nav>
-            <a class="omittable-button" href="upload_video.html"><img src="Images/upload.png" alt="Menu Button" height="20"></a>
-            <a class="omittable-button" href="#"><img src="Images/notification.png" alt="Menu Button" height="20"></a>
-            <a id="user-info-button" href="#"><img src="Images/user.png" alt="Menu Button" onclick="onUserInfoClick()" height="20"></a>
-            <div class="dropdown">
-                <div class="user-menu-button">
-                    <div class="user-pfp">
-                        <img src="Images/user.png" alt="User Image" width="30px">
-                    </div>
-                    <div class="user-name">
-                        <p>Guest <br>@Guest</p>
-                        <!-- <a href="#">View your channel</a> -->
-                    </div>
-                </div>
-                <!-- <button class="google-account">
-                    <p style="font-weight: bolder;">G</p>
-                    Google Account
-                </button>
-                <button class="switch-account">
-                    <i class="fa fa-youtube-play"></i>
-                    <p>Switch account</p>
-                </button> -->
-                <a href="login.html" class="dropdown-buttons">
-                    <i class="fa fa-youtube-play"></i>
-                    <p>Log in</p>
-                </a>
-                <a href="signup.html" class="dropdown-buttons">
-                    <i class="fa fa-youtube-play"></i>
-                    <p>Sign up</p>
-                </a>
-            </div>
-        </nav>
-    </header>
+    <?php 
+        include_once 'header.php';
+    ?>
     <sidebar>
         <div class="sidebar">
             <button class="sidebar-max"><i class="fa fa-home"></i> Home</button>
@@ -75,6 +36,10 @@
             <div id="show-more">
                 <button><i class="fa fa-thumbs-up" aria-hidden="true"></i> Liked Videos</button>
             </div>
+            <?php
+                // echo '<pre>'; 
+                // print_r($_SESSION);
+            ?>
         </div>
     </sidebar>
 
@@ -97,7 +62,7 @@
             <button>Live</button>
         </div>
 
-        <a href="video.html">
+        <a href="video.php">
             <div class="video-grid">
                 <div class="video">
                     <img class="thumbnail" src="thumbnails/wallpaper.webp" width="240" height="135"><br>
@@ -112,7 +77,7 @@
                 </div>
             </div>
         </a>
-        <a href="video.html">
+        <a href="video.php">
             <div class="video-grid">
                 <div class="video">
                     <img class="thumbnail" src="thumbnails/Sonic_Adventure.png" width="240" height="135"><br>
@@ -127,7 +92,7 @@
                 </div>
             </div>
         </a>
-        <a href="video.html">
+        <a href="video.php">
             <div class="video-grid">
                 <div class="video">
                     <img class="thumbnail" src="thumbnails/c++.jpg" width="240" height="135"><br>
@@ -142,7 +107,7 @@
                 </div>
             </div>
         </a>
-        <a href="video.html">
+        <a href="video.php">
             <div class="video-grid">
                 <div class="video">
                     <img class="thumbnail" src="thumbnails/java.png" width="240" height="135"><br>
@@ -157,7 +122,7 @@
                 </div>
             </div>
         </a>
-        <a href="video.html">
+        <a href="video.php">
             <div class="video-grid">
                 <div class="video">
                     <img class="thumbnail" src="thumbnails/react.png" width="240" height="135"><br>
@@ -172,7 +137,7 @@
                 </div>
             </div>
         </a>
-        <a href="video.html">
+        <a href="video.php">
             <div class="video-grid">
                 <div class="video">
                     <img class="thumbnail" src="thumbnails/csgo.png" width="240" height="135"><br>
@@ -187,7 +152,7 @@
                 </div>
             </div>
         </a>
-        <a href="video.html">
+        <a href="video.php">
             <div class="video-grid">
                 <div class="video">
                     <img class="thumbnail" src="thumbnails/minecraft.png" width="240" height="135"><br>

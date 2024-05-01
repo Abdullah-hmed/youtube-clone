@@ -10,47 +10,9 @@
 </head>
 <body>
     <script src="script.js"></script>
-    <header>
-        <div class="left-elements">
-            <button class="menu" onclick="displaySidebar()"><img src="Images/menu.png" alt="Menu Button" height="20"></button>
-            <div class="yt-logo">
-                <a href="index.html" class="logo"><img class="youtube-text" src="Images/yt_logo.png" alt="Menu Button" height="25"></a>
-                <p id="country">PK</p>
-            </div>
-        </div>
-        <div class="searchbar">
-            <input id="searchfield" placeholder="Search" size="30">
-            <a href="#"><img src="Images/search.png" alt="Search Button" height="20"></a>
-        </div>
-        <nav>
-            <a class="omittable-button" href="upload_video.html"><img src="Images/upload.png" alt="Menu Button" height="20"></a>
-            <a class="omittable-button" href="#"><img src="Images/notification.png" alt="Menu Button" height="20"></a>
-            <a id="user-info-button" href="#"><img src="Images/user.png" alt="Menu Button" onclick="onUserInfoClick()" height="20"></a>
-            <div class="dropdown">
-                <div class="user-menu-button">
-                    <div class="user-pfp">
-                        <img src="Images/user.png" alt="User Image" width="30px">
-                    </div>
-                    <div class="user-name">
-                        <p>Fireship <br>@FireshipIO</p>
-                        <a href="#">View your channel</a>
-                    </div>
-                </div>
-                <button class="google-account">
-                    <p style="font-weight: bolder;">G</p>
-                    <p>Google Account</p>
-                </button>
-                <button class="switch-account">
-                    <i class="fa fa-youtube-play"></i>
-                    <p>Switch account</p>
-                </button>
-                <button class="sign-out">
-                    <i class="fa fa-youtube-play"></i>
-                    <p>Sign out</p>
-                </button>
-            </div>
-        </nav>
-    </header>
+    <?php
+        include_once 'header.php';
+    ?>
 
     <sidebar id="video-sidebar">
         <div>
