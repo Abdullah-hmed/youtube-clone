@@ -1,5 +1,6 @@
 <?php 
     // session_start();
+    include 'connection.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" type="image/x-icon" href="Images/youtube.png">
+    <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
     <title>YouTube</title>
 </head>
 
@@ -62,7 +63,38 @@
             <button>Live</button>
         </div>
 
-        <a href="video.php">
+
+        <?php
+            $videoQuery = "Select * from video;";
+            $result = $conn->query($videoQuery);
+            if($result->num_rows > 0){
+                while($video = $result->fetch_assoc()){
+                    $videoTitle = $video["video_title"];
+                    $uploader = $video["uploader"];
+                    $views = $video["video_views"];
+                    $uploadDate = $video["video_upload_date"];
+                    echo '
+                    <a href="video.php">
+                        <div class="video-grid">
+                            <div class="video">
+                                <img class="thumbnail" src="thumbnails/wallpaper.webp" width="240" height="135"><br>
+                                <div class="video-info">
+                                    <img class="user" src="Images/user.png" width="30">
+                                    <div class="video-text">
+                                        <p class="video-title">'.$videoTitle.'</p>
+                                        <p class="video-uploader">'.$uploader.'</p>
+                                        <p class="video-stats">'.$views.' . '.substr($uploadDate, 0, 10).'</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>';
+                }
+            }
+            
+        ?>
+
+        <!-- <a href="video.php">
             <div class="video-grid">
                 <div class="video">
                     <img class="thumbnail" src="thumbnails/wallpaper.webp" width="240" height="135"><br>
@@ -166,7 +198,7 @@
                     </div>
                 </div>
             </div>
-        </a>
+        </a> -->
     </main>
 </body>
 

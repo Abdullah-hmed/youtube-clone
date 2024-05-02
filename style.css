@@ -266,6 +266,7 @@ main {
 
 .video {
     display: block;
+    width: 240px;
 }
 
 .video img {
@@ -298,24 +299,35 @@ main {
 
 .video-text {
     float: left;
+    
 }
 
 .video-text p {
     margin: 0px;
     margin-bottom: 5px;
+    color: #0f0f0f;
+    text-decoration: none !important;
 }
 
 .video-title {
-    font-size:medium;
+    font-size:16px;
     font-weight: 1000;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
 
 .video-uploader {
     font-size: small;
+    color: #606060 !important;
 }
 
 .video-stats {
     font-size: small;
+    color: #606060 !important;
 }
 
 @media (max-width: 768px) {

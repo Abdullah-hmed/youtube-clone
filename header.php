@@ -18,6 +18,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css"/>
+    <link rel="icon" type="image/x-icon" href="Images/youtube.png">
     <title>Header</title>
 </head>
 <body>
@@ -34,7 +35,13 @@
             <a href="video.html"><img src="Images/search.png" alt="Search Button" height="20"></a>
         </div>
         <nav>
-            <a class="omittable-button" href="upload_video.html"><img src="Images/upload.png" alt="Menu Button" height="20"></a>
+            
+            <?php 
+                if($_SESSION["loginStatus"]){
+                    echo '<a class="omittable-button" href="upload_video.html"><img src="Images/upload.png" alt="Menu Button" height="20"></a>';
+                }
+            ?>
+            
             <a class="omittable-button" href="#"><img src="Images/notification.png" alt="Menu Button" height="20"></a>
             <a id="user-info-button" href="#"><img src=<?php echo 'pfp/'.$pfp ?> alt="Menu Button" onclick="onUserInfoClick()" height="20" width="20"></a>
             <div class="dropdown">

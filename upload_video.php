@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     include("connection.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["video_file"])) {
@@ -28,10 +30,10 @@
             exit;
         }
 
-        $sqlQuery = "Insert into video(video_title, video_description, video_directory) values(?, ?, ?)";
+        $sqlQuery = "Insert into video(video_title, video_description, video_directory, uploader) values(?, ?, ?, ?)";
 
         $stmt = $conn->prepare($sqlQuery);
-        $stmt->bind_param("sss",$video_title, $video_description, $video_directory);
+        $stmt->bind_param("ssss",$video_title, $video_description, $video_directory, $_SESSION["username"]);
 
         if ($stmt->execute()) {
             move_uploaded_file($video_file["tmp_name"], $video_directory);
