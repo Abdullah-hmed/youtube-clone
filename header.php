@@ -38,7 +38,7 @@
             
             <?php 
                 if($_SESSION["loginStatus"]){
-                    echo '<a class="omittable-button" href="upload_video.html"><img src="Images/upload.png" alt="Menu Button" height="20"></a>';
+                    echo '<a href="upload_video.html"><img src="Images/upload.png" alt="Menu Button" height="20"></a>';
                 }
             ?>
             

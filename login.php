@@ -36,6 +36,8 @@
         // verify password
         if(password_verify($password, $userData["password"])){
             echo '<p style="color: green;">Password is valid!</p>';
+            $_SESSION["userID"] = $userData["userID"];
+            echo $_SESSION["userID"];
             $_SESSION["pfp"] = $userData["pfp"];
             $_SESSION["username"] = $userData["username"];
             $_SESSION["loginStatus"] = true;

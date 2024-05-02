@@ -37,10 +37,6 @@
             <div id="show-more">
                 <button><i class="fa fa-thumbs-up" aria-hidden="true"></i> Liked Videos</button>
             </div>
-            <?php
-                // echo '<pre>'; 
-                // print_r($_SESSION);
-            ?>
         </div>
     </sidebar>
 
@@ -69,12 +65,13 @@
             $result = $conn->query($videoQuery);
             if($result->num_rows > 0){
                 while($video = $result->fetch_assoc()){
+                    $videoID = $video["video_ID"];
                     $videoTitle = $video["video_title"];
                     $uploader = $video["uploader"];
                     $views = $video["video_views"];
                     $uploadDate = $video["video_upload_date"];
                     echo '
-                    <a href="video.php">
+                    <a href="video.php?videoID='.$videoID.'">
                         <div class="video-grid">
                             <div class="video">
                                 <img class="thumbnail" src="thumbnails/wallpaper.webp" width="240" height="135"><br>
