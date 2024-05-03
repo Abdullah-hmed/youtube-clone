@@ -59,7 +59,7 @@
             <button>Live</button>
         </div>
 
-
+        <div class="video-grid">
         <?php
             $videoQuery = "Select * from video;";
             $result = $conn->query($videoQuery);
@@ -72,24 +72,23 @@
                     $uploadDate = $video["video_upload_date"];
                     echo '
                     <a href="video.php?videoID='.$videoID.'">
-                        <div class="video-grid">
-                            <div class="video">
-                                <img class="thumbnail" src="thumbnails/wallpaper.webp" width="240" height="135"><br>
-                                <div class="video-info">
-                                    <img class="user" src="Images/user.png" width="30">
-                                    <div class="video-text">
-                                        <p class="video-title">'.$videoTitle.'</p>
-                                        <p class="video-uploader">'.$uploader.'</p>
-                                        <p class="video-stats">'.$views.' . '.substr($uploadDate, 0, 10).'</p>
-                                    </div>
+                        <div class="video">
+                            <img class="thumbnail" src="thumbnails/wallpaper.webp" width="100%"><br>
+                            <div class="video-info">
+                                <img class="user" src="Images/user.png" width="30">
+                                <div class="video-text">
+                                    <p class="video-title">'.$videoTitle.'</p>
+                                    <p class="video-uploader">'.$uploader.'</p>
+                                    <p class="video-stats">'.$views.' . '.substr($uploadDate, 0, 10).'</p>
                                 </div>
                             </div>
                         </div>
                     </a>';
+                    
                 }
             }
-            
         ?>
+        </div>
 
         <!-- <a href="video.php">
             <div class="video-grid">

@@ -257,16 +257,19 @@ main {
 }
 
 .video-grid {
-    float: left;
+    /* float: left; */
     margin: 25px;
     display: grid;
-    align-items: center;
+    grid-template-columns: repeat( auto-fit ,minmax(300px, 1fr));
+    row-gap: 10px;
+    column-gap: 10px;
+    /* align-items: center; */
     /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); */
 }
 
 .video {
     display: block;
-    width: 240px;
+    /* width: 240px; */
 }
 
 .video img {
@@ -314,7 +317,7 @@ main {
     font-weight: 1000;
     overflow: hidden;
     white-space: normal;
-    text-overflow: ellipsis;
+    text-overflow:clip;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -358,7 +361,7 @@ main {
 
     .video .thumbnail {
         /* aspect-ratio: 16/9; */
-        width: 350px;
+        width: 100%;
         height: auto;
     }
 
