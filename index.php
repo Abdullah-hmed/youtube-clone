@@ -1,6 +1,30 @@
 <?php 
     // session_start();
     include 'connection.php';
+
+    function getVideoTime($videoUploadDate){
+        date_default_timezone_set("Asia/Karachi");
+        $currentTime = new DateTime('now');
+        $currentTime->format('%y %m %d %h %i %s');
+        $uploadedDateVideo = new DateTime($videoUploadDate);
+        $UploadDiff = $uploadedDateVideo->diff($currentTime);
+
+
+        if(!$UploadDiff->format('%y') == 0){
+            $UploadDate = $UploadDiff->format('%y years ago');
+        } elseif(!$UploadDiff->format('%m') == 0){
+            $UploadDate = $UploadDiff->format('%m months ago');
+        } elseif(!$UploadDiff->format('%d') == 0){
+            $UploadDate = $UploadDiff->format('%d days ago');
+        } elseif(!$UploadDiff->format('%h') == 0){
+            $UploadDate = $UploadDiff->format('%h hours ago');
+        } elseif(!$UploadDiff->format('%i') == 0){
+            $UploadDate = $UploadDiff->format('%i minutes ago');
+        } else {
+            $UploadDate = $UploadDiff->format('%s seconds ago');
+        }
+        return $UploadDate;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,27 +42,8 @@
     <script src="script.js"></script>
     <?php 
         include_once 'header.php';
+        include_once 'sidebar.php';
     ?>
-    <sidebar>
-        <div class="sidebar">
-            <button class="sidebar-max"><i class="fa fa-home"></i> Home</button>
-            <button class="sidebar-max"><i class="fa fa-youtube-play" aria-hidden="true"></i> Shorts</button>
-            <button class="sidebar-max"><i class="fa fa-clipboard" aria-hidden="true"></i> Subscriptions</button>
-            <button class="sidebar-max"><b>You</b> <i class="fa fa-angle-right" aria-hidden="true"></i></button>
-            <button class="sidebar-max"><i class="fa fa-user-o" aria-hidden="true"></i> Your Channel</button>
-            <button class="sidebar-max"><i class="fa fa-history" aria-hidden="true"></i> History</button>
-            <button class="sidebar-max"><i class="fa fa-play" aria-hidden="true"></i> Your Videos</button>
-            <button class="sidebar-max"><i class="fa fa-clock-o" aria-hidden="true"></i> Watch Later</button>
-            <button class="sidebar-max" onclick="showMore()"><i class="fa fa-angle-down" aria-hidden="true"></i> Show More</button>
-            <button class="sidebar-min" style="margin-top: 10px;"><i class="fa fa-home" aria-hidden="true"></i><p>Home</p></button>
-            <button class="sidebar-min"><i class="fa fa-youtube-play" aria-hidden="true"></i><p>You</p></button>
-
-
-            <div id="show-more">
-                <button><i class="fa fa-thumbs-up" aria-hidden="true"></i> Liked Videos</button>
-            </div>
-        </div>
-    </sidebar>
 
     <main id="frontpage">
         <div class="tags">
@@ -79,7 +84,7 @@
                                 <div class="video-text">
                                     <p class="video-title">'.$videoTitle.'</p>
                                     <p class="video-uploader">'.$uploader.'</p>
-                                    <p class="video-stats">'.$views.' . '.substr($uploadDate, 0, 10).'</p>
+                                    <p class="video-stats">'.$views.' . '.getVideoTime($uploadDate).'</p>
                                 </div>
                             </div>
                         </div>

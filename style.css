@@ -150,12 +150,12 @@ nav a:hover {
     display: flex;
 }
 
-.searchbar a {
+#search-button {
     border-radius: 5em;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
-    padding-bottom: 6px;
-    padding-top: 5px;
+    padding-bottom: 10px;
+    padding-top: 11px;
     padding-left: 20px;
     padding-right: 20px;
     border: 1px outset buttonborder;
@@ -166,7 +166,7 @@ nav a:hover {
     border-style: solid;
 }
 
-.searchbar a:hover {
+#search-button:hover {
     background-color: lightgrey;
 }
 
@@ -312,6 +312,16 @@ main {
     text-decoration: none !important;
 }
 
+.suggested-video-data {
+    float: left;
+    max-height: 230px;
+}
+
+.suggested-video-data p {
+    color: #0f0f0f;
+    text-decoration: none !important;
+}
+
 .video-title {
     font-size:16px;
     font-weight: 1000;
@@ -321,6 +331,7 @@ main {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+    width: 240px;
 }
 
 .video-uploader {
@@ -337,7 +348,7 @@ main {
     /* For mobile phones: */
 
 
-    .searchbar a {
+    #search-button {
         border-radius: 30px;
         padding-bottom: 0px;
         padding: 10px;
@@ -413,6 +424,10 @@ main {
         display: block !important;
     }
 
+    .suggested-video-data a {
+        text-decoration: none !important;
+    }
+
     .suggested-video img {
         width: 100%;
         height: auto;
@@ -445,7 +460,7 @@ main {
         margin-bottom: 0px;
     }
 
-    .searchbar a:hover + #searchfield {
+    #search-button:hover + #searchfield {
         display: block;
     }
 }
@@ -797,4 +812,19 @@ iframe {
 }
 
 
-/* Sign Up Code */
+/* Results Code */
+
+.search-result-container {
+    margin-top: 100px;
+    margin-left: 300px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+}
+
+.search-description {
+    font-size: small;
+    color: gray !important;
+}

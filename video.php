@@ -1,9 +1,17 @@
 <?php 
     include 'connection.php';
     $videoID = $_GET["videoID"];
+
+    //Query to increment views of video
+    $viewQuery = "update video set video_views = video_views + 1 where video_ID = ?";
+    $viewStmt = $conn->prepare($viewQuery);
+    $viewStmt->bind_param("i",$videoID);
+    $viewStmt->execute();
+
+    //geting the video dat
     $videoQuery = "select video_title, video_description, video_likes, video_dislikes, video_upload_date, video_views, video_directory from video where video_ID=? LIMIT 1;";
     $videoStmt = $conn->prepare($videoQuery);
-    $videoStmt->bind_param("s",$videoID);
+    $videoStmt->bind_param("i",$videoID);
 
     $videoStmt->execute();
 
@@ -11,26 +19,31 @@
 
     $videoStmt->fetch();
 
-    date_default_timezone_set("Asia/Karachi");
-    $currentTime = new DateTime('now');
-    echo $currentTime->format('%y %m %d %h %i %s');
+    $videoStmt->close();
     
-    $uploadedDateVideo = new DateTime($videoUploadDate);
-    $UploadDiff = $uploadedDateVideo->diff($currentTime);
+
+    function getVideoTime($videoUploadDate){
+        date_default_timezone_set("Asia/Karachi");
+        $currentTime = new DateTime('now');
+        $currentTime->format('%y %m %d %h %i %s');
+        $uploadedDateVideo = new DateTime($videoUploadDate);
+        $UploadDiff = $uploadedDateVideo->diff($currentTime);
 
 
-    if(!$UploadDiff->format('%y') == 0){
-        $UploadDate = $UploadDiff->format('%y years ago');
-    } elseif(!$UploadDiff->format('%m') == 0){
-        $UploadDate = $UploadDiff->format('%m months ago');
-    } elseif(!$UploadDiff->format('%d') == 0){
-        $UploadDate = $UploadDiff->format('%d days ago');
-    } elseif(!$UploadDiff->format('%h') == 0){
-        $UploadDate = $UploadDiff->format('%h hours ago');
-    } elseif(!$UploadDiff->format('%i') == 0){
-        $UploadDate = $UploadDiff->format('%i minutes ago');
-    } else {
-        $UploadDate = $UploadDiff->format('%s seconds ago');
+        if(!$UploadDiff->format('%y') == 0){
+            $UploadDate = $UploadDiff->format('%y years ago');
+        } elseif(!$UploadDiff->format('%m') == 0){
+            $UploadDate = $UploadDiff->format('%m months ago');
+        } elseif(!$UploadDiff->format('%d') == 0){
+            $UploadDate = $UploadDiff->format('%d days ago');
+        } elseif(!$UploadDiff->format('%h') == 0){
+            $UploadDate = $UploadDiff->format('%h hours ago');
+        } elseif(!$UploadDiff->format('%i') == 0){
+            $UploadDate = $UploadDiff->format('%i minutes ago');
+        } else {
+            $UploadDate = $UploadDiff->format('%s seconds ago');
+        }
+        return $UploadDate;
     }
 ?>
 
@@ -98,7 +111,7 @@
             </div>
             <div class="description">
                 <div class="description-data">
-                    <p id="description-date"><?php echo $videoViews.' views . '.$UploadDate ?></p>
+                    <p id="description-date"><?php echo $videoViews.' views . '.getVideoTime($videoUploadDate) ?></p>
                     <!-- <p id="description-tags">#programming #compsci #learntocode</p> -->
                 </div>
                 <p id="description-text"> <?php echo $videoDescription ?> </p>
@@ -169,62 +182,28 @@
                 </div>
             </div>
             <div class="suggested-container">
-                <div class="suggested-video">
-                    <img src="thumbnails/react.png" alt="thumbnail" width="240" height="135">
-                    <div class="suggested-video-data">
-                        <p class="video-title">Scenic Mountains</p>
-                        <p class="user">Abdullah</p>
-                        <p class="video-stats">100K views . 5 hours ago</p>
-                    </div>
-                </div>
-                <div class="suggested-video">
-                    <img src="thumbnails/react.png" alt="thumbnail" width="240" height="135">
-                    <div class="suggested-video-data">
-                        <p class="video-title">Scenic Mountains</p>
-                        <p class="user">Abdullah</p>
-                        <p class="video-stats">100K views . 5 hours ago</p>
-                    </div>
-                </div>
-                <div class="suggested-video">
-                    <img src="thumbnails/react.png" alt="thumbnail" width="240" height="135">
-                    <div class="suggested-video-data">
-                        <p class="video-title">Scenic Mountains</p>
-                        <p class="user">Abdullah</p>
-                        <p class="video-stats">100K views . 5 hours ago</p>
-                    </div>
-                </div>
-                <div class="suggested-video">
-                    <img src="thumbnails/react.png" alt="thumbnail" width="240" height="135">
-                    <div class="suggested-video-data">
-                        <p class="video-title">Scenic Mountains</p>
-                        <p class="user">Abdullah</p>
-                        <p class="video-stats">100K views . 5 hours ago</p>
-                    </div>
-                </div>
-                <div class="suggested-video">
-                    <img src="thumbnails/react.png" alt="thumbnail" width="240" height="135">
-                    <div class="suggested-video-data">
-                        <p class="video-title">Scenic Mountains</p>
-                        <p class="user">Abdullah</p>
-                        <p class="video-stats">100K views . 5 hours ago</p>
-                    </div>
-                </div>
-                <div class="suggested-video">
-                    <img src="thumbnails/react.png" alt="thumbnail" width="240" height="135">
-                    <div class="suggested-video-data">
-                        <p class="video-title">Scenic Mountains</p>
-                        <p class="user">Abdullah</p>
-                        <p class="video-stats">100K views . 5 hours ago</p>
-                    </div>
-                </div>
-                <div class="suggested-video">
-                    <img src="thumbnails/react.png" alt="thumbnail" width="240" height="135">
-                    <div class="suggested-video-data">
-                        <p class="video-title">Scenic Mountains</p>
-                        <p class="user">Abdullah</p>
-                        <p class="video-stats">100K views . 5 hours ago</p>
-                    </div>
-                </div>
+                <?php 
+                    $suggestedQuery = "Select video_ID, video_title, uploader, video_views, video_upload_date from video WHERE video_ID != ?;";
+                    $suggestedStmt = $conn->prepare($suggestedQuery);
+                    $suggestedStmt->bind_param("i",$videoID);
+                    $suggestedStmt->execute();
+                    $suggestedStmt->bind_result($suggestedID, $suggestedTitle, $suggestedUploader, $suggestedViews, $suggestedDate);
+                    
+                    while($suggestedStmt->fetch()){
+                        echo '
+                            <a class="video" href="video.php?videoID='.$suggestedID.'">
+                                <div class="suggested-video">
+                                <img src="thumbnails/react.png" alt="thumbnail" width="240" height="135">
+                                    <div class="suggested-video-data">
+                                        <p class="video-title">'.$suggestedTitle.'</p>
+                                        <p class="user">'.$suggestedUploader.'</p>
+                                        <p class="video-stats">'.$suggestedViews.' . '.getVideoTime($suggestedDate).'</p>
+                                    </div>
+                                </div>
+                            </a>
+                        ';
+                    }
+                ?>
             </div>
         <aside>
     </main>

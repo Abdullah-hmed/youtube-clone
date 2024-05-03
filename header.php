@@ -31,8 +31,11 @@
             </div>
         </div>
         <div class="searchbar">
-            <input id="searchfield" placeholder="Search" size="30">
-            <a href="video.html"><img src="Images/search.png" alt="Search Button" height="20"></a>
+            <form action="results.php" method="get">
+                <input id="searchfield" name="searchField" placeholder="Search" size="30">
+                <!-- <a href="video.html"><img src="Images/search.png" alt="Search Button" height="20"></a> -->
+                <button id="search-button" type="submit" value="submit"><i class="fa fa-lg fa-search" aria-hidden="true"></i></button>
+            </form>
         </div>
         <nav>
             
