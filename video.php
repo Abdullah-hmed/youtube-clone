@@ -183,7 +183,8 @@
             </div>
             <div class="suggested-container">
                 <?php 
-                    $suggestedQuery = "Select video_ID, video_title, uploader, video_views, video_upload_date from video WHERE video_ID != ?;";
+                    $suggestedQuery = "Select video.video_ID, video.video_title, users.username, video.video_views, video.video_upload_date 
+                    from video INNER JOIN users ON video.uploaderID = users.UserID WHERE video_ID != ?;";
                     $suggestedStmt = $conn->prepare($suggestedQuery);
                     $suggestedStmt->bind_param("i",$videoID);
                     $suggestedStmt->execute();

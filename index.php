@@ -66,24 +66,26 @@
 
         <div class="video-grid">
         <?php
-            $videoQuery = "Select * from video;";
+            $videoQuery = "Select video.video_ID, video.video_title, video.video_views, video.video_upload_date, users.username, users.pfp
+            from video INNER JOIN users ON video.uploaderID = users.userID";
             $result = $conn->query($videoQuery);
             if($result->num_rows > 0){
                 while($video = $result->fetch_assoc()){
                     $videoID = $video["video_ID"];
                     $videoTitle = $video["video_title"];
-                    $uploader = $video["uploader"];
                     $views = $video["video_views"];
                     $uploadDate = $video["video_upload_date"];
+                    $uploaderName = $video["username"];
+                    $uploaderPFP = $video["pfp"];
                     echo '
                     <a href="video.php?videoID='.$videoID.'">
                         <div class="video">
                             <img class="thumbnail" src="thumbnails/wallpaper.webp" width="100%"><br>
                             <div class="video-info">
-                                <img class="user" src="Images/user.png" width="30">
+                                <img class="user" src="pfp/'.$uploaderPFP.'" width="30">
                                 <div class="video-text">
                                     <p class="video-title">'.$videoTitle.'</p>
-                                    <p class="video-uploader">'.$uploader.'</p>
+                                    <p class="video-uploader">'.$uploaderName.'</p>
                                     <p class="video-stats">'.$views.' . '.getVideoTime($uploadDate).'</p>
                                 </div>
                             </div>

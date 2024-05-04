@@ -305,14 +305,14 @@ main {
     
 }
 
-.video-text p {
+.video-text p, .results-video-data {
     margin: 0px;
     margin-bottom: 5px;
     color: #0f0f0f;
     text-decoration: none !important;
 }
 
-.suggested-video-data {
+.suggested-video-data, .results-video-data {
     float: left;
     max-height: 230px;
 }
@@ -322,7 +322,7 @@ main {
     text-decoration: none !important;
 }
 
-.video-title {
+.video-title, .results-video-title {
     font-size:16px;
     font-weight: 1000;
     overflow: hidden;
@@ -609,9 +609,10 @@ iframe {
     margin-right: 10px;
 }
 
-.suggested-video {
+.suggested-video, .result-video {
     margin-top: 10px;
     display: flex;
+    gap: 20px;
 }
 
 .description {
@@ -827,4 +828,14 @@ iframe {
 .search-description {
     font-size: small;
     color: gray !important;
+}
+
+.results-video-title {
+    font-weight:bold;
+    font-size: 25px;
+    margin: 0;
+}
+
+.user p {
+    margin-left: 5px;
 }

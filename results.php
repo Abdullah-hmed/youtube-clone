@@ -31,6 +31,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
     <title>Search Results</title>
 </head>
 <body>
@@ -38,30 +39,33 @@
         include 'header.php';
         include_once 'sidebar.php';
         $searchText = $_GET["searchField"];
+        $searchParam = "%$searchText%";
         // $searchText = "test";
         // if(!isset($searchText)){
         //     $searchText = 'test';
         // }
-        $searchQuery = "select video_ID, video_title, video_description, uploader, video_views, video_upload_date from video where MATCH(video_title, video_description) against(? IN NATURAL LANGUAGE MODE);";
+        $searchQuery = "select video.video_ID, video.video_title, video.video_description, users.username, users.pfp, video.video_views, video.video_upload_date
+        from video left join users on video.uploaderID = users.userID
+        where MATCH(video_title, video_description) against(? IN NATURAL LANGUAGE MODE) OR video.video_title LIKE ? OR video.video_description LIKE ?;";
         $searchStmt = $conn->prepare($searchQuery);
-        $searchStmt->bind_param("s",$searchText);
+        $searchStmt->bind_param("sss",$searchText, $searchParam, $searchParam);
         
         $searchStmt->execute();
 
-        $searchStmt->bind_result($searchID, $searchTitle, $searchDescription ,$searchUploader, $searchViews, $searchDate);
+        $searchStmt->bind_result($searchID, $searchTitle, $searchDescription, $searchUser, $searchUserPFP , $searchViews, $searchDate);
     ?>
     <div class="search-result-container">
         <?php 
             while($searchStmt->fetch()){
                 echo '
                     <a class="video" href="video.php?videoID='.$searchID.'">
-                        <div class="suggested-video">
+                        <div class="result-video">
                         <img src="thumbnails/react.png" alt="thumbnail" width="400px" height="100%">
-                            <div class="suggested-video-data">
-                                <p class="video-title">'.$searchTitle.'</p>
-                                <div class="user"><img src="Images/user.png" width="30"><p>'.$searchUploader.'</p></div>
-                                <p class="search-description">'.$searchDescription.'</p>
+                            <div class="results-video-data">
+                                <p class="results-video-title">'.$searchTitle.'</p>
                                 <p class="video-stats">'.$searchViews.'  views . '.getVideoTime($searchDate).'</p>
+                                <div class="user"><img src="pfp/'.$searchUserPFP.'" width="30"><p>'.$searchUser.'</p></div>
+                                <p class="search-description">'.$searchDescription.'</p>
                             </div>
                         </div>
                     </a>
