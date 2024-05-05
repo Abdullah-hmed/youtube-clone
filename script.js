@@ -71,7 +71,7 @@ function handleCommentWriter(event){ //method to call makeComment method when us
 
 function makeComment(){
   const commentContainer = document.querySelector(".comments-container");
-  var commentText = document.getElementById("comment-writer");
+  var commentText = document.getElementsByName("comment-writer")[0];
   console.log(commentText);
   var commentHTML = `
                 <div class="comments">
@@ -91,6 +91,30 @@ function makeComment(){
                 </div>`
                 ;
   commentContainer.insertAdjacentHTML('afterbegin', commentHTML);
+  
+  var form = document.createElement('form');
+  form.method = 'post';
+  form.action = 'make_comment.php';
+  form.target = '_blank';
+
+  var comment = document.createElement('input');
+  comment.type = 'hidden';
+  comment.name = 'comment';
+  comment.value = commentText.value;
+
+  form.appendChild(comment);
+
+  var ID = document.createElement('input');
+  ID.type = 'hidden';
+  ID.name = 'videoID';
+  ID.value = videoID;
+
+  form.appendChild(ID);
+
+  document.body.appendChild(form);
+  form.submit();
+  document.body.removeChild(form);
+
   commentText.value = "";
 }
 

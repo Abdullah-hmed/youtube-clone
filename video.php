@@ -121,53 +121,57 @@
             </div>
             <div class="comments-section">
                 <div class="comment-title">
-                    <p id="Comments-title">911 Comments</p>
+                    <p id="Comments-title">Comments</p>
                     <button id="sort-by"><i class="fa fa-sort"></i> Sort By</button>
                 </div>
-                <div class="comment-area">
-                    <img src="Images/user.png" width="40px">
-                    <div class="comment-write">
-                        <input type="text" name="comment-writer" id="comment-writer" onkeypress="handleCommentWriter(event)" placeholder="Add a comment...">
-                        <div class="comment-submit">
-                            <button>😊</button>
-                            <div class="comment-cancel">
-                                <button>Cancel</button>
-                                <button id="submit-button" onclick="makeComment()">Comment</button>
+                <?php 
+                    if(isset($_SESSION["userID"])){
+                        echo '<div class="comment-area">
+                        <img src="Images/user.png" width="40px">
+                        <div class="comment-write">
+                            <input type="text" name="comment-writer" id="comment-writer" onkeypress="handleCommentWriter(event)" placeholder="Add a comment...">
+                            <div class="comment-submit">
+                                <button>😊</button>
+                                <div class="comment-cancel">
+                                    <button>Cancel</button>
+                                    <button id="submit-button" onclick="makeComment()">Comment</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div>';
+                    }
+                ?>
+                
                 <br>
                 <div class="comments-container">
-                    <div class="comments">
-                        <img src="Images/user.png" width="30px">
-                        <div class="comments-data">
-                            <div class="comment-name-date">
-                                <p class="comment-name">Abdullah</p>
-                                <p class="comment-date">1 year ago</p>
-                            </div>
-                            <p class="comment-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita, aspernatur repellendus cupiditate deleniti itaque rerum natus, porro atque similique eum dignissimos? Commodi adipisci voluptas at atque quis exercitationem dolorem nihil!</p>
-                            <div class="feedback">
-                                <button class="comment-feedback"><i class="fa fa-thumbs-up"></i></button>
-                                <button class="comment-feedback"><i class="fa fa-thumbs-down fa-flip-horizontal"></i></button>
-                                <button class="comment-feedback"><p>Reply</p></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comments">
-                    <img src="Images/user.png" width="30px">
-                    <div class="comments-data">
-                        <div class="comment-name-date">
-                            <p class="comment-name">Abdullah</p>
-                            <p class="comment-date">1 year ago</p>
-                        </div>
-                        <p class="comment-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita, aspernatur repellendus cupiditate deleniti itaque rerum natus, porro atque similique eum dignissimos? Commodi adipisci voluptas at atque quis exercitationem dolorem nihil!</p>
-                        <div class="feedback">
-                            <button class="comment-feedback"><i class="fa fa-thumbs-up"></i></button>
-                            <button class="comment-feedback"><i class="fa fa-thumbs-down fa-flip-horizontal"></i></button>
-                            <button class="comment-feedback"><p>Reply</p></button>
-                        </div>
-                    </div>
+                    <?php 
+
+                        $commentSql = "select comments.comment, users.username, comments.time 
+                        from comments INNER JOIN users 
+                        ON comments.userID = users.userID where videoID =".$_GET["videoID"];
+                        $result = $conn->query($commentSql);
+                        if($result->num_rows > 0){
+                            while($comment = $result->fetch_assoc()){
+                                echo'<div class="comments">
+                                    <img src="Images/user.png" width="30px">
+                                    <div class="comments-data">
+                                        <div class="comment-name-date">
+                                            <p class="comment-name">'.$comment["username"].'</p>
+                                            <p class="comment-date">'.getVideoTime($comment["time"]).'</p>
+                                        </div>
+                                        <p class="comment-text">'.$comment["comment"].'</p>
+                                        <div class="feedback">
+                                            <button class="comment-feedback"><i class="fa fa-thumbs-up"></i></button>
+                                            <button class="comment-feedback"><i class="fa fa-thumbs-down fa-flip-horizontal"></i></button>
+                                            <button class="comment-feedback"><p>Reply</p></button>
+                                        </div>
+                                    </div>
+                                </div>';
+                            }
+                        }
+                            
+                        
+                    ?>
                 </div>
             </div>
             </div>
