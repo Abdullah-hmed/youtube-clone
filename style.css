@@ -517,7 +517,7 @@ iframe {
     border-radius: 50%;
 }
 
-#menu-pfp, .user-info img {
+#menu-pfp, .user-info img, .comment-pfp {
     width: 40px;
     height: 40px;
     object-fit: cover;

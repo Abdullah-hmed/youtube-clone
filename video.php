@@ -146,14 +146,14 @@
                 <div class="comments-container">
                     <?php 
 
-                        $commentSql = "select comments.comment, users.username, comments.time 
+                        $commentSql = "select comments.comment, users.username, users.pfp, comments.time 
                         from comments INNER JOIN users 
                         ON comments.userID = users.userID where videoID =".$_GET["videoID"];
                         $result = $conn->query($commentSql);
                         if($result->num_rows > 0){
                             while($comment = $result->fetch_assoc()){
                                 echo'<div class="comments">
-                                    <img src="Images/user.png" width="30px">
+                                    <img class="comment-pfp" src="pfp/'.$comment["pfp"].'" width="30px">
                                     <div class="comments-data">
                                         <div class="comment-name-date">
                                             <p class="comment-name">'.$comment["username"].'</p>
