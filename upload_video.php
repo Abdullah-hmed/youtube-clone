@@ -7,11 +7,18 @@
         $video_title = $_POST["video_title"];
         $video_description = $_POST["video_description"];
         $video_file = $_FILES["video_file"];
+        $video_tmp_directory = $_FILES["video_file"]["tmp_name"];
         echo '<pre>';
         print_r($video_file); //print all attributes
         
-        $newFileName = uniqid('', true).'.mp4';
+        $videoName = uniqid('', true);
+
+        $newFileName = $videoName.'.mp4';
         $video_directory = "uploaded_videos/".$newFileName;
+
+        $thumbnailName = $videoName.'.jpg';
+        $thumbnail_directory = "thumbnails/".$thumbnailName;
+        echo $thumbnail_directory.'<br>';
         
         if($video_file["size"] == 0){ //does file exist
             echo 'File does not exist!';
@@ -30,13 +37,33 @@
             exit;
         }
 
-        $sqlQuery = "Insert into video(video_title, video_description, video_directory, uploader) values(?, ?, ?, ?)";
+        // Command to generate thumbnail using FFmpeg
+        $ffmpegCMD = "C:/ffmpeg/bin/ffmpeg -i $video_tmp_directory -ss 00:00:03 -vf scale=1280:720 -vframes 1 $thumbnail_directory";
+        // Exsecute FFmpeg command
+        exec($ffmpegCMD, $output, $returnCode);
+        if ($returnCode === 0) {
+            echo "<br>Thumbnail generated successfully.";
+            $sqlQuery = "Insert into video(video_title, video_description, video_directory, video_thumbnail, uploaderID) values(?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($sqlQuery);
+            $stmt->bind_param("ssssi",$video_title, $video_description, $video_directory, $thumbnail_directory, $_SESSION["userID"]);
+        } else {
+            echo "<br>Error generating thumbnail.";
+            $sqlQuery = "Insert into video(video_title, video_description, video_directory, uploaderID) values(?, ?, ?, ?)";
+            $stmt = $conn->prepare($sqlQuery);
+            $stmt->bind_param("sssi",$video_title, $video_description, $video_directory, $_SESSION["userID"]);
+        }
 
-        $stmt = $conn->prepare($sqlQuery);
-        $stmt->bind_param("ssss",$video_title, $video_description, $video_directory, $_SESSION["username"]);
+        
 
+        
+
+
+
+        
         if ($stmt->execute()) {
             move_uploaded_file($video_file["tmp_name"], $video_directory);
+
+
             echo '<p style="color: green;">Data Added Successfully!</p>';
         } else {
             echo "Error: " . $stmt->error;

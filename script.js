@@ -1,5 +1,12 @@
 
-
+function togglePageSidebar() {
+  console.log(window.location.pathname);
+  if(window.location.pathname.endsWith('index.php')){
+    hideSidebar();
+  } else{
+    displaySidebar();
+  }
+}
 
 function hideSidebar() {
 
@@ -91,4 +98,35 @@ function onUserInfoClick(){
   // document.querySelector('.dropdown').style.display = 'flex';
   const dropdown = document.querySelector('.dropdown');
   dropdown.classList.toggle("open-menu");
+}
+
+var likeButton = document.getElementById('like-button');
+var dislikeButton = document.getElementById('dislike-button');
+
+function likeVideo(){
+  const likeIcon = document.getElementById('like-icon');
+  if (likeIcon.classList.contains('fa-thumbs-o-up')) {
+    likeIcon.classList.remove('fa-thumbs-o-up');
+    likeIcon.classList.add('fa-thumbs-up');
+    dislikeButton.disabled = true;
+  } else {
+    likeIcon.classList.remove('fa-thumbs-up');
+    likeIcon.classList.add('fa-thumbs-o-up');
+    dislikeButton.disabled = false;
+  }
+
+}
+
+function dislikeVideo(){
+  const dislikeIcon = document.getElementById('dislike-icon');
+
+  if (dislikeIcon.classList.contains('fa-thumbs-o-down')) {
+    dislikeIcon.classList.remove('fa-thumbs-o-down');
+    dislikeIcon.classList.add('fa-thumbs-down');
+    likeButton.disabled = true;
+  } else {
+    dislikeIcon.classList.remove('fa-thumbs-down');
+    dislikeIcon.classList.add('fa-thumbs-o-down');
+    likeButton.disabled = false;
+  }
 }

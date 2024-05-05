@@ -8,14 +8,15 @@
     $viewStmt->bind_param("i",$videoID);
     $viewStmt->execute();
 
-    //geting the video dat
-    $videoQuery = "select video_title, video_description, video_likes, video_dislikes, video_upload_date, video_views, video_directory from video where video_ID=? LIMIT 1;";
+    //geting the video data
+    $videoQuery = "select video.video_title, video.video_description, video.video_likes, video.video_dislikes, video.video_upload_date, video.video_views, video.video_directory, users.username, users.pfp
+    from video INNER JOIN users ON video.uploaderID = users.userID where video_ID=? LIMIT 1;";
     $videoStmt = $conn->prepare($videoQuery);
     $videoStmt->bind_param("i",$videoID);
 
     $videoStmt->execute();
 
-    $videoStmt->bind_result($videoTitle, $videoDescription, $videoLikes, $videoDislikes, $videoUploadDate, $videoViews, $videoDirectory);
+    $videoStmt->bind_result($videoTitle, $videoDescription, $videoLikes, $videoDislikes, $videoUploadDate, $videoViews, $videoDirectory, $videoChannelName, $videoChannelPFP);
 
     $videoStmt->fetch();
 
@@ -59,7 +60,7 @@
     <title>Video Page</title>
 </head>
 <body>
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
     <?php
         include_once 'header.php';
     ?>
@@ -90,10 +91,10 @@
             <div class="user-and-video-info">
                 <div class="user-subs">
                     <div class="user-info">
-                        <img src="./Images/user.png" alt="user" width="40px">
+                        <img src="pfp/<?php echo $videoChannelPFP ?>" alt="user" width="40px">
                         <div class="acc-info">
-                            <p id="acc-name">Abdullah</p>
-                            <p id="acc-subs">2.86M subscribers</p>
+                            <p id="acc-name"><?php echo $videoChannelName ?></p>
+                            <p id="acc-subs">0 subscribers</p>
                         </div>
                     </div>
                     <div class="subscription">
@@ -101,8 +102,8 @@
                     </div>
                 </div>
                 <div class="feedback-buttons">
-                    <button id="like-button"><i class="fa fa-thumbs-up"></i> <?php echo $videoLikes ?></button>
-                    <button id="dislike-button"><i class="fa fa-thumbs-down fa-flip-horizontal"></i></button>
+                    <button id="like-button" onclick="likeVideo()"><i id="like-icon" class="fa fa-thumbs-o-up"></i> <?php echo $videoLikes ?></button>
+                    <button id="dislike-button" onclick="dislikeVideo()"><i id="dislike-icon" class="fa fa-thumbs-o-down fa-flip-horizontal"></i></button>
                     <button class="omittable-button"><i class="fa fa-share"></i> Share</button>
                     <button class="omittable-button"><i class="fa fa-download"></i> Download</button>
                     <button class="omittable-button"><i class="fa fa-scissors"></i> Clip</button>
@@ -124,7 +125,7 @@
                     <button id="sort-by"><i class="fa fa-sort"></i> Sort By</button>
                 </div>
                 <div class="comment-area">
-                    <img src="/youtube-clone/Images/user.png" width="40px">
+                    <img src="Images/user.png" width="40px">
                     <div class="comment-write">
                         <input type="text" name="comment-writer" id="comment-writer" onkeypress="handleCommentWriter(event)" placeholder="Add a comment...">
                         <div class="comment-submit">
@@ -139,7 +140,7 @@
                 <br>
                 <div class="comments-container">
                     <div class="comments">
-                        <img src="/youtube-clone/Images/user.png" width="30px">
+                        <img src="Images/user.png" width="30px">
                         <div class="comments-data">
                             <div class="comment-name-date">
                                 <p class="comment-name">Abdullah</p>
@@ -154,7 +155,7 @@
                         </div>
                     </div>
                     <div class="comments">
-                    <img src="/youtube-clone/Images/user.png" width="30px">
+                    <img src="Images/user.png" width="30px">
                     <div class="comments-data">
                         <div class="comment-name-date">
                             <p class="comment-name">Abdullah</p>

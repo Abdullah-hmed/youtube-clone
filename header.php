@@ -24,7 +24,7 @@
 <body>
 <header>
         <div class="left-elements">
-            <button onclick="hideSidebar()" class="menu"><img src="Images/menu.png" alt="Menu Button" height="20"></button>
+            <button onclick="togglePageSidebar()" class="menu"><img src="Images/menu.png" alt="Menu Button" height="20"></button>
             <div class="yt-logo">
                 <a href="index.php" class="logo"><img class="youtube-text" src="Images/yt_logo.png" alt="Menu Button" height="25"></a>
                 <p id="country">PK</p>

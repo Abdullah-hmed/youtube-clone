@@ -66,7 +66,7 @@
 
         <div class="video-grid">
         <?php
-            $videoQuery = "Select video.video_ID, video.video_title, video.video_views, video.video_upload_date, users.username, users.pfp
+            $videoQuery = "Select video.video_ID, video.video_title, video.video_views, video.video_upload_date, video.video_thumbnail, users.username, users.pfp
             from video INNER JOIN users ON video.uploaderID = users.userID";
             $result = $conn->query($videoQuery);
             if($result->num_rows > 0){
@@ -75,14 +75,15 @@
                     $videoTitle = $video["video_title"];
                     $views = $video["video_views"];
                     $uploadDate = $video["video_upload_date"];
+                    $thumbnail = $video["video_thumbnail"];
                     $uploaderName = $video["username"];
                     $uploaderPFP = $video["pfp"];
                     echo '
                     <a href="video.php?videoID='.$videoID.'">
                         <div class="video">
-                            <img class="thumbnail" src="thumbnails/wallpaper.webp" width="100%"><br>
+                            <img class="thumbnail" src="'.$thumbnail.'" width="100%"><br>
                             <div class="video-info">
-                                <img class="user" src="pfp/'.$uploaderPFP.'" width="30">
+                                <img class="frontpage-user" src="pfp/'.$uploaderPFP.'" width="30">
                                 <div class="video-text">
                                     <p class="video-title">'.$videoTitle.'</p>
                                     <p class="video-uploader">'.$uploaderName.'</p>
@@ -91,117 +92,10 @@
                             </div>
                         </div>
                     </a>';
-                    
                 }
             }
         ?>
         </div>
-
-        <!-- <a href="video.php">
-            <div class="video-grid">
-                <div class="video">
-                    <img class="thumbnail" src="thumbnails/wallpaper.webp" width="240" height="135"><br>
-                    <div class="video-info">
-                        <img class="user" src="Images/user.png" width="30">
-                        <div class="video-text">
-                            <p class="video-title">Scenic Mountains</p>
-                            <p class="video-uploader">Abdullah</p>
-                            <p class="video-stats">100K views . 5 hours ago</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="video.php">
-            <div class="video-grid">
-                <div class="video">
-                    <img class="thumbnail" src="thumbnails/Sonic_Adventure.png" width="240" height="135"><br>
-                    <div class="video-info">
-                        <img class="user" src="Images/user.png" width="30">
-                        <div class="video-text">
-                            <p class="video-title">Sonic Adventures</p>
-                            <p class="video-uploader">Abdullah</p>
-                            <p class="video-stats">100K views . 5 hours ago</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="video.php">
-            <div class="video-grid">
-                <div class="video">
-                    <img class="thumbnail" src="thumbnails/c++.jpg" width="240" height="135"><br>
-                    <div class="video-info">
-                        <img class="user" src="Images/user.png" width="30">
-                        <div class="video-text">
-                            <p class="video-title">C++ Tutorial</p>
-                            <p class="video-uploader">Abdullah</p>
-                            <p class="video-stats">100K views . 5 hours ago</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="video.php">
-            <div class="video-grid">
-                <div class="video">
-                    <img class="thumbnail" src="thumbnails/java.png" width="240" height="135"><br>
-                    <div class="video-info">
-                        <img class="user" src="Images/user.png" width="30">
-                        <div class="video-text">
-                            <p class="video-title">Java Tutorial</p>
-                            <p class="video-uploader">Abdullah</p>
-                            <p class="video-stats">100K views . 5 hours ago</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="video.php">
-            <div class="video-grid">
-                <div class="video">
-                    <img class="thumbnail" src="thumbnails/react.png" width="240" height="135"><br>
-                    <div class="video-info">
-                        <img class="user" src="Images/user.png" width="30">
-                        <div class="video-text">
-                            <p class="video-title">Frontend Dev</p>
-                            <p class="video-uploader">Abdullah</p>
-                            <p class="video-stats">100K views . 5 hours ago</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="video.php">
-            <div class="video-grid">
-                <div class="video">
-                    <img class="thumbnail" src="thumbnails/csgo.png" width="240" height="135"><br>
-                    <div class="video-info">
-                        <img class="user" src="Images/user.png" width="30">
-                        <div class="video-text">
-                            <p class="video-title">Top 5 Best Games!</p>
-                            <p class="video-uploader">Abdullah</p>
-                            <p class="video-stats">100K views . 5 hours ago</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="video.php">
-            <div class="video-grid">
-                <div class="video">
-                    <img class="thumbnail" src="thumbnails/minecraft.png" width="240" height="135"><br>
-                    <div class="video-info">
-                        <img class="user" src="Images/user.png" width="30">
-                        <div class="video-text">
-                            <p class="video-title">Minecraft Lets Play!</p>
-                            <p class="video-uploader">Abdullah</p>
-                            <p class="video-stats">100K views . 5 hours ago</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a> -->
     </main>
 </body>
 

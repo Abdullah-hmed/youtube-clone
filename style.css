@@ -276,7 +276,7 @@ main {
     border-radius: 10px;
 }
 
-.video img:hover{
+.thumbnail:hover{
     transition:all 0.2s;
     border-radius: 0%;
 }
@@ -506,9 +506,9 @@ iframe {
     align-items: center;
 }
 
-.user-info img {
+/* .user-info img {
     margin-right: 10px;
-}
+} */
 
 #user-info-button img {
     width: 20px;
@@ -517,7 +517,7 @@ iframe {
     border-radius: 50%;
 }
 
-#menu-pfp {
+#menu-pfp, .user-info img {
     width: 40px;
     height: 40px;
     object-fit: cover;
@@ -531,6 +531,10 @@ iframe {
 /* .circular {
     border-radius: 50%;
 } */
+
+.acc-info {
+    margin-left: 10px;
+}
 
 .acc-info p {
     margin: 0px;
@@ -548,6 +552,10 @@ iframe {
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
     margin-right: -6px;
+}
+
+.liked {
+    background-color: #cfcfcf !important;
 }
 
 #dislike-button {
@@ -599,14 +607,14 @@ iframe {
 .suggested-container {
     height: 100%;
     padding: 10px;
-    margin-right: 50px;
+    /* margin-right: 50px; */
     /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); */
     float: right;
 }
 
 .suggested-video img {
     border-radius: 10px;
-    margin-right: 10px;
+    /* margin-right: 10px; */
 }
 
 .suggested-video, .result-video {
