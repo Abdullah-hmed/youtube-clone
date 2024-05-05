@@ -67,7 +67,7 @@
         <div class="video-grid">
         <?php
             $videoQuery = "Select video.video_ID, video.video_title, video.video_views, video.video_upload_date, video.video_thumbnail, users.username, users.pfp
-            from video INNER JOIN users ON video.uploaderID = users.userID";
+            from video INNER JOIN users ON video.uploaderID = users.userID ORDER BY RAND()";
             $result = $conn->query($videoQuery);
             if($result->num_rows > 0){
                 while($video = $result->fetch_assoc()){

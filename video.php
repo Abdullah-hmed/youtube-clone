@@ -184,18 +184,18 @@
             </div>
             <div class="suggested-container">
                 <?php 
-                    $suggestedQuery = "Select video.video_ID, video.video_title, users.username, video.video_views, video.video_upload_date 
+                    $suggestedQuery = "Select video.video_ID, video.video_title, video.video_thumbnail, users.username, video.video_views, video.video_upload_date 
                     from video INNER JOIN users ON video.uploaderID = users.UserID WHERE video_ID != ?;";
                     $suggestedStmt = $conn->prepare($suggestedQuery);
                     $suggestedStmt->bind_param("i",$videoID);
                     $suggestedStmt->execute();
-                    $suggestedStmt->bind_result($suggestedID, $suggestedTitle, $suggestedUploader, $suggestedViews, $suggestedDate);
+                    $suggestedStmt->bind_result($suggestedID, $suggestedTitle, $suggestedThumbnail, $suggestedUploader, $suggestedViews, $suggestedDate);
                     
                     while($suggestedStmt->fetch()){
                         echo '
                             <a class="video" href="video.php?videoID='.$suggestedID.'">
                                 <div class="suggested-video">
-                                <img src="thumbnails/react.png" alt="thumbnail" width="240" height="135">
+                                <img src="'.$suggestedThumbnail.'" alt="thumbnail" width="240" height="135">
                                     <div class="suggested-video-data">
                                         <p class="video-title">'.$suggestedTitle.'</p>
                                         <p class="user">'.$suggestedUploader.'</p>

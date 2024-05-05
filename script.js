@@ -75,7 +75,7 @@ function makeComment(){
   console.log(commentText);
   var commentHTML = `
                 <div class="comments">
-                  <img src="/youtube-clone/Images/user.png" width="30px">
+                  <img src="Images/user.png" width="30px">
                   <div class="comments-data">
                       <div class="comment-name-date">
                           <p class="comment-name">User</p>
@@ -102,16 +102,24 @@ function onUserInfoClick(){
 
 var likeButton = document.getElementById('like-button');
 var dislikeButton = document.getElementById('dislike-button');
+const urlParams = new URLSearchParams(window.location.search);
+const videoID = urlParams.get('videoID');
 
 function likeVideo(){
   const likeIcon = document.getElementById('like-icon');
-  if (likeIcon.classList.contains('fa-thumbs-o-up')) {
+  if (likeIcon.classList.contains('fa-thumbs-o-up')) { //Like Button Pressed
     likeIcon.classList.remove('fa-thumbs-o-up');
     likeIcon.classList.add('fa-thumbs-up');
     dislikeButton.disabled = true;
-  } else {
+
+    updateLikes('increment');
+
+  } else { //Like Button Unpressed
     likeIcon.classList.remove('fa-thumbs-up');
     likeIcon.classList.add('fa-thumbs-o-up');
+
+    updateLikes('decrement');
+
     dislikeButton.disabled = false;
   }
 
@@ -119,14 +127,70 @@ function likeVideo(){
 
 function dislikeVideo(){
   const dislikeIcon = document.getElementById('dislike-icon');
-
-  if (dislikeIcon.classList.contains('fa-thumbs-o-down')) {
+  
+  if (dislikeIcon.classList.contains('fa-thumbs-o-down')) { //Dislike Button Pressed
     dislikeIcon.classList.remove('fa-thumbs-o-down');
     dislikeIcon.classList.add('fa-thumbs-down');
     likeButton.disabled = true;
-  } else {
+    updateDislikes('increment');
+  } else { //Dislike Button Unpressed
     dislikeIcon.classList.remove('fa-thumbs-down');
     dislikeIcon.classList.add('fa-thumbs-o-down');
     likeButton.disabled = false;
+    updateDislikes('decrement');
   }
+}
+
+
+
+function updateLikes(action){
+  var form = document.createElement('form');
+  form.method = 'post';
+  form.action = 'like_dislike.php';
+  form.target = '_blank';
+
+  var input = document.createElement('input');
+  input.type = 'hidden';
+  input.name = 'likes';
+  input.value = action;
+
+  form.appendChild(input);
+
+  var ID = document.createElement('input');
+  ID.type = 'hidden';
+  ID.name = 'videoID';
+  ID.value = videoID;
+
+  form.appendChild(ID);
+
+  document.body.appendChild(form);
+  form.submit();
+
+  document.body.removeChild(form);
+}
+
+function updateDislikes(action){
+  var form = document.createElement('form');
+  form.method = 'post';
+  form.action = 'like_dislike.php';
+  form.target = '_blank';
+
+  var input = document.createElement('input');
+  input.type = 'hidden';
+  input.name = 'dislikes';
+  input.value = action;
+
+  form.appendChild(input);
+
+  var ID = document.createElement('input');
+  ID.type = 'hidden';
+  ID.name = 'videoID';
+  ID.value = videoID;
+
+  form.appendChild(ID);
+
+  document.body.appendChild(form);
+  form.submit();
+
+  document.body.removeChild(form);
 }

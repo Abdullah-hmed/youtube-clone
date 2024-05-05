@@ -44,7 +44,7 @@
         // if(!isset($searchText)){
         //     $searchText = 'test';
         // }
-        $searchQuery = "select video.video_ID, video.video_title, video.video_description, users.username, users.pfp, video.video_views, video.video_upload_date
+        $searchQuery = "select video.video_ID, video.video_title, video.video_description, video.video_thumbnail, users.username, users.pfp, video.video_views, video.video_upload_date
         from video left join users on video.uploaderID = users.userID
         where MATCH(video_title, video_description) against(? IN NATURAL LANGUAGE MODE) OR video.video_title LIKE ? OR video.video_description LIKE ?;";
         $searchStmt = $conn->prepare($searchQuery);
@@ -52,7 +52,7 @@
         
         $searchStmt->execute();
 
-        $searchStmt->bind_result($searchID, $searchTitle, $searchDescription, $searchUser, $searchUserPFP , $searchViews, $searchDate);
+        $searchStmt->bind_result($searchID, $searchTitle, $searchDescription, $thumbnail, $searchUser, $searchUserPFP , $searchViews, $searchDate);
     ?>
     <div class="search-result-container">
         <?php 
@@ -60,7 +60,7 @@
                 echo '
                     <a class="video" href="video.php?videoID='.$searchID.'">
                         <div class="result-video">
-                        <img src="thumbnails/react.png" alt="thumbnail" width="400px" height="100%">
+                        <img src="'.$thumbnail.'" alt="thumbnail" width="400px" height="100%">
                             <div class="results-video-data">
                                 <p class="results-video-title">'.$searchTitle.'</p>
                                 <p class="video-stats">'.$searchViews.'  views . '.getVideoTime($searchDate).'</p>
