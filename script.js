@@ -1,7 +1,7 @@
 
 function togglePageSidebar() {
   console.log(window.location.pathname);
-  if(window.location.pathname.endsWith('index.php')){
+  if(!window.location.pathname.endsWith('video.php')){
     hideSidebar();
   } else{
     displaySidebar();
@@ -11,28 +11,39 @@ function togglePageSidebar() {
 function hideSidebar() {
 
   var sidebar = document.querySelector("sidebar");
-  var sidebarMin = document.querySelector("sidebar-min");
-  var maxElements = sidebar.getElementsByClassName("sidebar-max");
-  var minElements = sidebar.getElementsByClassName("sidebar-min");
+  var maxElements = sidebar.querySelector(".sidebar-max");
+  var minElements = sidebar.querySelector(".sidebar-min");
   var frontpage = document.getElementById("frontpage");
 
-  if (maxElements[0].style.display == "none") {
-    for(var i=0; i<maxElements.length;i++){
-      maxElements[i].style.display = "block";
-    }
-    for(var i=0; i<minElements.length;i++){
-      minElements[i].style.display = "none";
-    }
-    frontpage.style.marginLeft = "200px";
-  } else {
-    for(var i=0; i<maxElements.length;i++){
-      maxElements[i].style.display = "none";
-    }
-    for(var i=0; i<minElements.length;i++){
-      minElements[i].style.display = "block";
-    }
+  if(!maxElements.classList.contains('hide')){
+    maxElements.classList.add('hide');
+    minElements.classList.remove('hide');
     frontpage.style.marginLeft = "80px";
+  } else {
+    maxElements.classList.remove('hide');
+    minElements.classList.add('hide');
+    
+    frontpage.style.marginLeft = "200px";
   }
+
+
+  // if (!maxElements[0].classList.contains('hide')) {
+  //   for(var i=0; i<maxElements.length;i++){
+  //     maxElements[i].classList.add('hide');
+  //   }
+  //   // for(var i=0; i<minElements.length;i++){
+  //   //   minElements[i].classList.remove('hide');
+  //   // }
+  //   frontpage.style.marginLeft = "200px";
+  // } else {
+  //   for(var i=0; i<maxElements.length;i++){
+  //     maxElements[i].classList.remove('hide');
+  //   }
+  //   // for(var i=0; i<minElements.length;i++){
+  //   //   minElements[i].classList.add('hide');
+  //   // }
+  //   frontpage.style.marginLeft = "80px";
+  // }
 }
 
 function showMore() {

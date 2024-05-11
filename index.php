@@ -87,7 +87,7 @@
                                 <div class="video-text">
                                     <p class="video-title">'.$videoTitle.'</p>
                                     <p class="video-uploader">'.$uploaderName.'</p>
-                                    <p class="video-stats">'.$views.' . '.getVideoTime($uploadDate).'</p>
+                                    <p class="video-stats">'.$views.' views . '.getVideoTime($uploadDate).'</p>
                                 </div>
                             </div>
                         </div>

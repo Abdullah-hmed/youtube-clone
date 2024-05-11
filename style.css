@@ -170,6 +170,10 @@ nav a:hover {
     background-color: lightgrey;
 }
 
+.hide {
+    display: none !important;
+}
+
 .sidebar button, #video-sidebar button {
     display: block;
     background-color: white;
@@ -209,13 +213,13 @@ nav a:hover {
     z-index: 10;
 }
 
-.sidebar .sidebar-min {
+.sidebar .sidebar-min button {
     padding-top: 0px;
     padding-bottom: 0px;
     padding-left: 15px;
     padding-right: 15px;
     width: 100%;
-    display: none;
+    /* display: none; */
 }
 
 #show-more {

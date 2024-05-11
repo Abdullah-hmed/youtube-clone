@@ -9,17 +9,22 @@
 <body>
     <sidebar>
             <div class="sidebar">
-                <button class="sidebar-max"><i class="fa fa-home"></i> Home</button>
-                <button class="sidebar-max"><i class="fa fa-youtube-play" aria-hidden="true"></i> Shorts</button>
-                <button class="sidebar-max"><i class="fa fa-clipboard" aria-hidden="true"></i> Subscriptions</button>
-                <button class="sidebar-max"><b>You</b> <i class="fa fa-angle-right" aria-hidden="true"></i></button>
-                <button class="sidebar-max"><i class="fa fa-user-o" aria-hidden="true"></i> Your Channel</button>
-                <button class="sidebar-max"><i class="fa fa-history" aria-hidden="true"></i> History</button>
-                <button class="sidebar-max"><i class="fa fa-play" aria-hidden="true"></i> Your Videos</button>
-                <button class="sidebar-max"><i class="fa fa-clock-o" aria-hidden="true"></i> Watch Later</button>
-                <button class="sidebar-max" onclick="showMore()"><i class="fa fa-angle-down" aria-hidden="true"></i> Show More</button>
-                <button class="sidebar-min" style="margin-top: 10px;"><i class="fa fa-home" aria-hidden="true"></i><p>Home</p></button>
-                <button class="sidebar-min"><i class="fa fa-youtube-play" aria-hidden="true"></i><p>You</p></button>
+                <div class="sidebar-max">
+                    <button><i class="fa fa-home"></i> Home</button>
+                    <button><i class="fa fa-youtube-play" aria-hidden="true"></i> Shorts</button>
+                    <button><i class="fa fa-clipboard" aria-hidden="true"></i> Subscriptions</button>
+                    <button><b>You</b> <i class="fa fa-angle-right" aria-hidden="true"></i></button>
+                    <button><i class="fa fa-user-o" aria-hidden="true"></i> Your Channel</button>
+                    <button><i class="fa fa-history" aria-hidden="true"></i> History</button>
+                    <button><i class="fa fa-play" aria-hidden="true"></i> Your Videos</button>
+                    <button><i class="fa fa-clock-o" aria-hidden="true"></i> Watch Later</button>
+                    <button onclick="showMore()"><i class="fa fa-angle-down" aria-hidden="true"></i> Show More</button>
+                </div>
+                <div class="sidebar-min hide">
+                    <button style="margin-top: 10px;"><i class="fa fa-home" aria-hidden="true"></i><p>Home</p></button>
+                    <button><i class="fa fa-youtube-play" aria-hidden="true"></i><p>You</p></button>
+                </div>
+                
 
 
                 <div id="show-more">
