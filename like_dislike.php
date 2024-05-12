@@ -19,8 +19,8 @@
                 $likedatabaseStmt = $conn->prepare($likedatabaseSql);
                 $likedatabaseStmt->bind_param("ii", $videoID, $_SESSION["userID"]);
                 $likedatabaseStmt->execute();
-                
-                echo "<script>window. close();</script>";
+                    header("location: video.php?videoID=$videoID");
+                //echo "<script>window. close();</script>";
             }
             if($likeButton === 'decrement'){
                 $likeSql = "Update video SET video_likes = video_likes - 1 WHERE video_ID = ?";
@@ -33,8 +33,8 @@
                 $unlikedatabaseStmt->bind_param("ii", $_SESSION["userID"], $videoID);
                 $unlikedatabaseStmt->execute();
                 
-
-                echo "<script>window. close();</script>";
+                header("location: video.php?videoID=$videoID");
+                //echo "<script>window. close();</script>";
             }
             
         }
@@ -51,8 +51,8 @@
                 $dislikedatabaseStmt = $conn->prepare($dislikedatabaseSql);
                 $dislikedatabaseStmt->bind_param("ii", $videoID, $_SESSION["userID"]);
                 $dislikedatabaseStmt->execute();
-
-                echo "<script>window. close();</script>";
+                header("location: video.php?videoID=$videoID");
+                //echo "<script>window. close();</script>";
             }
             if($dislikeButton === 'decrement'){
                 $dislikeSql = "Update video SET video_dislikes = video_dislikes - 1 WHERE video_ID = ?";
@@ -64,10 +64,10 @@
                 $undislikedatabaseStmt = $conn->prepare($undislikedatabaseSql);
                 $undislikedatabaseStmt->bind_param("ii", $_SESSION["userID"], $videoID);
                 $undislikedatabaseStmt->execute();
-
-                echo "<script>window. close();</script>";
-            }
-            echo "<script>window. close();</script>";
+                header("location: video.php?videoID=$videoID");
+                //echo "<script>window. close();</script>";
+            }   header("location: video.php?videoID=$videoID");
+            //echo "<script>window. close();</script>";
         }
     }
 ?>

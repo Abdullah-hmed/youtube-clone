@@ -591,6 +591,10 @@ iframe {
     border: none;
 }
 
+#subscribe {
+    font-size: smaller;
+}
+
 
 .user-subs {
     display: flex;

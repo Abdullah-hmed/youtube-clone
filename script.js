@@ -36,7 +36,7 @@ function showMore() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() { //to hide sidebar by default on video page
   if(window.location.pathname.endsWith("/video.php")){
     var sidebar = document.querySelector(".sidebar-max");
     sidebar.style.display = "none";
@@ -170,7 +170,7 @@ function updateLikes(action){
   var form = document.createElement('form');
   form.method = 'post';
   form.action = 'like_dislike.php';
-  form.target = '_blank';
+  // form.target = '_blank';
 
   var input = document.createElement('input');
   input.type = 'hidden';
@@ -196,7 +196,7 @@ function updateDislikes(action){
   var form = document.createElement('form');
   form.method = 'post';
   form.action = 'like_dislike.php';
-  form.target = '_blank';
+  // form.target = '_blank';
 
   var input = document.createElement('input');
   input.type = 'hidden';

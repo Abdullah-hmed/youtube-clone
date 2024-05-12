@@ -9,14 +9,14 @@
     $viewStmt->execute();
 
     //geting the video data
-    $videoQuery = "select video.video_title, video.video_description, video.video_likes, video.video_dislikes, video.video_upload_date, video.video_views, video.video_directory, users.username, users.pfp
+    $videoQuery = "select video.uploaderID, video.video_title, video.video_description, video.video_likes, video.video_dislikes, video.video_upload_date, video.video_views, video.video_directory, users.username, users.pfp
     from video INNER JOIN users ON video.uploaderID = users.userID where video_ID=? LIMIT 1;";
     $videoStmt = $conn->prepare($videoQuery);
     $videoStmt->bind_param("i",$videoID);
 
     $videoStmt->execute();
 
-    $videoStmt->bind_result($videoTitle, $videoDescription, $videoLikes, $videoDislikes, $videoUploadDate, $videoViews, $videoDirectory, $videoChannelName, $videoChannelPFP);
+    $videoStmt->bind_result($uploaderID, $videoTitle, $videoDescription, $videoLikes, $videoDislikes, $videoUploadDate, $videoViews, $videoDirectory, $videoChannelName, $videoChannelPFP);
 
     $videoStmt->fetch();
 
@@ -49,6 +49,32 @@
             }else{
                 return false;
             }
+        }
+    }
+
+    function subscribedOrNot($conn, $channelID, $subscriberID){
+        $subscribeCheckSql = "SELECT 1 FROM subscriptions WHERE channelID=? AND subscriberID=? LIMIT 1;";
+        $subscribeCheckStmt = $conn->prepare($subscribeCheckSql);
+        $subscribeCheckStmt->bind_param("ii", $channelID, $subscriberID);
+        if($subscribeCheckStmt->execute()){
+            $result = $subscribeCheckStmt->get_result() or die ();
+            $subscribeCheck = mysqli_fetch_assoc($result);
+            if ($subscribeCheck){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
+
+    function subscriberCount($conn, $channelID){
+        $countSql = "SELECT COUNT(*) as subscribers from subscriptions where channelID = ?;";
+        $countStmt = $conn->prepare($countSql);
+        $countStmt->bind_param("i", $channelID);
+        if($countStmt->execute()){
+            $result = $countStmt->get_result() or die();
+            $count = mysqli_fetch_assoc($result);
+            return $count['subscribers'];
         }
     }
     
@@ -105,11 +131,25 @@
                         <img src="pfp/<?php echo $videoChannelPFP ?>" alt="user" width="40px">
                         <div class="acc-info">
                             <p id="acc-name"><?php echo $videoChannelName ?></p>
-                            <p id="acc-subs">0 subscribers</p>
+                            <p id="acc-subs"><?php echo subscriberCount($conn, $uploaderID) ?> subscribers</p>
                         </div>
                     </div>
-                    <div class="subscription">
-                        <button id="subscribe">Subscribe</button>
+                        <form action="subscribe.php" method="post">
+                            <div class="subscription">
+                            <input type="hidden" name="channelID" value="<?php echo $uploaderID ?>">
+                            <input type="hidden" name="videoID" value="<?php echo $videoID ?>">
+                            <input type="hidden" name="userID" value="<?php echo $_SESSION["userID"] ?>">
+                            <?php 
+                                if(subscribedOrNot($conn, $uploaderID, $_SESSION["userID"])){
+                                    echo '<input type="hidden" name="action" value="decrement">';
+                                    echo '<button style="background-color: #cfcfcf; color: black;" type="submit" id="subscribe">Subscribed</button>';
+                                } else{
+                                    echo '<input type="hidden" name="action" value="increment">';
+                                    echo '<button type="submit" id="subscribe">Subscribe</button>';
+                                }
+                            ?>
+                            
+                        </form>
                     </div>
                 </div>
                 <div class="feedback-buttons">
