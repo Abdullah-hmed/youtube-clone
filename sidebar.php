@@ -19,7 +19,7 @@
                 <div class="sidebar-max">
                     <a href="index.php"><i class="fa fa-home"></i> Home</a>
                     <button><i class="fa fa-youtube-play" aria-hidden="true"></i> Shorts</button>
-                    <button><i class="fa fa-clipboard" aria-hidden="true"></i> Subscriptions</button>
+                    <a href="subscriptions.php"><i class="fa fa-clipboard" aria-hidden="true"></i> Subscriptions</a>
                     <button <?php disableIfNotLoggedIn() ?> ><b>You</b> <i class="fa fa-angle-right" aria-hidden="true"></i></button>
                     <button <?php disableIfNotLoggedIn() ?> ><i class="fa fa-user-o" aria-hidden="true"></i> Your Channel</button>
                     <button <?php disableIfNotLoggedIn() ?> ><i class="fa fa-history" aria-hidden="true"></i> History</button>

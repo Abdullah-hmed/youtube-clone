@@ -140,12 +140,17 @@
                             <input type="hidden" name="videoID" value="<?php echo $videoID ?>">
                             <input type="hidden" name="userID" value="<?php echo $_SESSION["userID"] ?>">
                             <?php 
-                                if(subscribedOrNot($conn, $uploaderID, $_SESSION["userID"])){
-                                    echo '<input type="hidden" name="action" value="decrement">';
-                                    echo '<button style="background-color: #cfcfcf; color: black;" type="submit" id="subscribe">Subscribed</button>';
+                                if(isset($_SESSION["userID"])){
+                                    if(subscribedOrNot($conn, $uploaderID, $_SESSION["userID"])){
+                                        echo '<input type="hidden" name="action" value="decrement">';
+                                        echo '<button style="background-color: #cfcfcf; color: black;" type="submit" id="subscribe">Subscribed</button>';
+                                    } else{
+                                        echo '<input type="hidden" name="action" value="increment">';
+                                        echo '<button type="submit" id="subscribe">Subscribe</button>';
+                                        
+                                    } 
                                 } else{
-                                    echo '<input type="hidden" name="action" value="increment">';
-                                    echo '<button type="submit" id="subscribe">Subscribe</button>';
+                                    echo '<button disabled type="submit" id="subscribe">Subscribe</button>';
                                 }
                             ?>
                             
