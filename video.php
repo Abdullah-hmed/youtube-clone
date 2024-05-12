@@ -92,26 +92,8 @@
     <script defer src="script.js"></script>
     <?php
         include_once 'header.php';
+        include_once 'sidebar.php';
     ?>
-
-    <sidebar id="video-sidebar">
-        <div>
-            <button><i class="fa fa-home"></i> Home</button>
-            <button><i class="fa fa-youtube-play" aria-hidden="true"></i> Shorts</button>
-            <button><i class="fa fa-clipboard" aria-hidden="true"></i> Subscriptions</button>
-            <button><b>You</b> <i class="fa fa-angle-right" aria-hidden="true"></i></button>
-            <button><i class="fa fa-user-o" aria-hidden="true"></i> Your Channel</button>
-            <button><i class="fa fa-history" aria-hidden="true"></i> History</button>
-            <button><i class="fa fa-play" aria-hidden="true"></i> Your Videos</button>
-            <button><i class="fa fa-clock-o" aria-hidden="true"></i> Watch Later</button>
-            <button onclick="showMore()"><i class="fa fa-angle-down" aria-hidden="true"></i> Show More</button>
-
-            <div id="show-more">
-                <button><i class="fa fa-thumbs-up" aria-hidden="true"></i> Liked Videos</button>
-            </div>
-        </div>
-        
-    </sidebar>
 
     <main class="video-page-container">
         <div class="video-and-comments">

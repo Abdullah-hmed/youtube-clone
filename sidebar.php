@@ -17,7 +17,7 @@
     <sidebar>
             <div class="sidebar">
                 <div class="sidebar-max">
-                    <button><i class="fa fa-home"></i> Home</button>
+                    <a href="index.php"><i class="fa fa-home"></i> Home</a>
                     <button><i class="fa fa-youtube-play" aria-hidden="true"></i> Shorts</button>
                     <button><i class="fa fa-clipboard" aria-hidden="true"></i> Subscriptions</button>
                     <button <?php disableIfNotLoggedIn() ?> ><b>You</b> <i class="fa fa-angle-right" aria-hidden="true"></i></button>
