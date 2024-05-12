@@ -22,7 +22,36 @@
 
     $videoStmt->close();
     
+    function videoLiked($conn, $videoID){
+        $likeCheckSql = "SELECT 1 FROM likes WHERE userID=? AND videoID=? LIMIT 1;";
+        $likeCheckStmt = $conn->prepare($likeCheckSql);
+        $likeCheckStmt->bind_param("ii", $_SESSION["userID"], $videoID);
+        if($likeCheckStmt->execute()){
+            $result = $likeCheckStmt->get_result() or die ();
+            $likeCheck = mysqli_fetch_assoc($result);
+            if ($likeCheck){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
 
+    function videoDisliked($conn, $videoID){
+        $dislikeCheckSql = "SELECT 1 FROM dislikes WHERE userID=? AND videoID=? LIMIT 1;";
+        $dislikeCheckStmt = $conn->prepare($dislikeCheckSql);
+        $dislikeCheckStmt->bind_param("ii", $_SESSION["userID"], $videoID);
+        if($dislikeCheckStmt->execute()){
+            $result = $dislikeCheckStmt->get_result() or die ();
+            $dislikeCheck = mysqli_fetch_assoc($result);
+            if ($dislikeCheck){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
+    
     function getVideoTime($videoUploadDate){
         date_default_timezone_set("Asia/Karachi");
         $currentTime = new DateTime('now');
@@ -102,8 +131,47 @@
                     </div>
                 </div>
                 <div class="feedback-buttons">
-                    <button id="like-button" onclick="likeVideo()"><i id="like-icon" class="fa fa-thumbs-o-up"></i> <?php echo $videoLikes ?></button>
-                    <button id="dislike-button" onclick="dislikeVideo()"><i id="dislike-icon" class="fa fa-thumbs-o-down fa-flip-horizontal"></i></button>
+                    <button id="like-button" 
+                            <?php 
+                                if(!isset($_SESSION["userID"]) or videoDisliked($conn, $videoID)){
+                                    echo 'disabled';
+                                }; 
+                            ?>
+                        onclick="likeVideo()">
+                        <i id="like-icon" 
+                            class="
+                                <?php
+                                    if(videoLiked($conn, $videoID)){
+                                        echo 'fa fa-thumbs-up';
+                                    } else {
+                                        echo 'fa fa-thumbs-o-up';
+                                    }
+                            ?>">
+                        </i> 
+                        <?php echo $videoLikes ?>
+                    </button>
+
+                    <button id="dislike-button" 
+                        <?php 
+                            if(!isset($_SESSION["userID"]) or videoLiked($conn, $videoID)){
+                                
+                                echo 'disabled';
+                            };
+                        ?>
+                        onclick="dislikeVideo()">
+                        <i id="dislike-icon" 
+                            class="
+                            <?php 
+                                if(videoDisliked($conn, $videoID)){
+                                    echo 'fa fa-thumbs-down ';
+                                } else {
+                                    echo 'fa fa-thumbs-o-down ';
+                                }
+                            ?>
+                                fa-flip-horizontal">
+
+                        </i>
+                    </button>
                     <button class="omittable-button"><i class="fa fa-share"></i> Share</button>
                     <button class="omittable-button"><i class="fa fa-download"></i> Download</button>
                     <button class="omittable-button"><i class="fa fa-scissors"></i> Clip</button>

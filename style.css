@@ -174,7 +174,7 @@ nav a:hover {
     display: none !important;
 }
 
-.sidebar button, #video-sidebar button {
+.sidebar button, #video-sidebar button, #show-more a {
     display: block;
     background-color: white;
     border: none;
@@ -183,6 +183,12 @@ nav a:hover {
     padding-left: 20px;
     font-size: medium;
     font-weight: 500;
+}
+
+#show-more a {
+    text-decoration: none;
+    color: black;
+    padding: 10px 10px;
 }
 
 #video-sidebar {
@@ -197,7 +203,7 @@ nav a:hover {
     margin-top: 10px;
 }
 
-.sidebar button:hover {
+.sidebar button:hover, #show-more a:hover {
     background-color: #efefef;
     border-radius: 20px;
 }

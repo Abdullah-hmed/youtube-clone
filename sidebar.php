@@ -1,3 +1,10 @@
+<?php 
+    function disableIfNotLoggedIn(){
+        if(!isset($_SESSION["userID"])){ 
+            echo 'disabled';
+        };
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,12 +20,12 @@
                     <button><i class="fa fa-home"></i> Home</button>
                     <button><i class="fa fa-youtube-play" aria-hidden="true"></i> Shorts</button>
                     <button><i class="fa fa-clipboard" aria-hidden="true"></i> Subscriptions</button>
-                    <button><b>You</b> <i class="fa fa-angle-right" aria-hidden="true"></i></button>
-                    <button><i class="fa fa-user-o" aria-hidden="true"></i> Your Channel</button>
-                    <button><i class="fa fa-history" aria-hidden="true"></i> History</button>
-                    <button><i class="fa fa-play" aria-hidden="true"></i> Your Videos</button>
-                    <button><i class="fa fa-clock-o" aria-hidden="true"></i> Watch Later</button>
-                    <button onclick="showMore()"><i class="fa fa-angle-down" aria-hidden="true"></i> Show More</button>
+                    <button <?php disableIfNotLoggedIn() ?> ><b>You</b> <i class="fa fa-angle-right" aria-hidden="true"></i></button>
+                    <button <?php disableIfNotLoggedIn() ?> ><i class="fa fa-user-o" aria-hidden="true"></i> Your Channel</button>
+                    <button <?php disableIfNotLoggedIn() ?> ><i class="fa fa-history" aria-hidden="true"></i> History</button>
+                    <button <?php disableIfNotLoggedIn() ?> ><i class="fa fa-play" aria-hidden="true"></i> Your Videos</button>
+                    <button <?php disableIfNotLoggedIn() ?> ><i class="fa fa-clock-o" aria-hidden="true"></i> Watch Later</button>
+                    <button <?php disableIfNotLoggedIn() ?> onclick="showMore()"><i class="fa fa-angle-down" aria-hidden="true"></i> Show More</button>
                 </div>
                 <div class="sidebar-min hide">
                     <button style="margin-top: 10px;"><i class="fa fa-home" aria-hidden="true"></i><p>Home</p></button>
@@ -28,7 +35,7 @@
 
 
                 <div id="show-more">
-                    <button><i class="fa fa-thumbs-up" aria-hidden="true"></i> Liked Videos</button>
+                    <a href="liked_videos.php"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Liked Videos</a>
                 </div>
             </div>
     </sidebar>
