@@ -16,13 +16,44 @@ header {
     position: fixed;
 }
 
-main {
-    margin-top: 60px;
-}
 
-#frontpage {
+#frontpage, .subs-main {
+    margin-top: 60px;
     margin-left: 200px;
 }
+
+.subs-main {
+    display: flex;
+    flex-direction: column;
+}
+
+.subscribed-card {
+    display: flex;
+    margin: 10px;
+    border-radius: 30px;
+    justify-content: space-evenly;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+}
+
+.subscribed-card:hover {
+    background-color: #eeeeee;
+    transition: all 500ms;
+}
+
+.subscribed-card img {
+    width: 150px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 30px;
+}
+
+.subs-data {
+    display: flex;
+}
+
 .left-elements {
     display: flex;
     align-items: center;

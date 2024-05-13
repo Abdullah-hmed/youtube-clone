@@ -14,7 +14,6 @@
                 $likeStmt->execute();
                 $likeStmt->close();
 
-                //TODO: Add entry of userID and videoID into likes and dislikes table for appropriate button enabling and disabling
                 $likedatabaseSql = "Insert into likes (videoID, userID) values (?, ?);";
                 $likedatabaseStmt = $conn->prepare($likedatabaseSql);
                 $likedatabaseStmt->bind_param("ii", $videoID, $_SESSION["userID"]);

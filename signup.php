@@ -24,7 +24,22 @@
         header('refresh: 3;signup.html');
     }
 
-    //TODO: VALIDATE FOR IF USERNAME ALREADY EXISTS
+    // VALIDATE FOR IF USERNAME ALREADY EXISTS
+    $UsernameInUseSql = "Select 1 from users WHERE username = ?";
+    $UsernameInUseStmt = $conn->prepare($UsernameInUseSql);
+    $UsernameInUseStmt->bind_param("s", $username);
+    if($UsernameInUseStmt->execute()){
+        $result = $UsernameInUseStmt->get_result() or die ();
+        $UsernameInUse = mysqli_fetch_assoc($result);
+        if (!$UsernameInUse){
+            echo '<p style="color: green;">Username available!</p>';
+        }else{
+            echo '<p style="color: red;">Username Unavailable!</p>';
+            $conn->close();
+            header('refresh: 3;signup.html');
+            exit;
+        }
+    }
 
     //check for whitespace in username
     if(!preg_match('/^\S*$/', $username)){
