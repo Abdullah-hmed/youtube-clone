@@ -25,7 +25,7 @@
         <?php
             // TODO: Add Create Channel Page
             while($subsStmt->fetch()){
-               echo"<a href='#'> 
+               echo"<a href='channel.php?channelID=$subscribedChannelID'> 
                         <div class='subscribed-card'>
                             <img class='sub-img' src='pfp/$subscribedChannelPFP' alt='Channel Profile Picture'>
                             <div class='subs-data'>

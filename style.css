@@ -17,7 +17,7 @@ header {
 }
 
 
-#frontpage, .subs-main {
+#frontpage, .subs-main, .channel-main {
     margin-top: 60px;
     margin-left: 200px;
 }
@@ -25,6 +25,15 @@ header {
 .subs-main {
     display: flex;
     flex-direction: column;
+}
+
+.channel-hero-page {
+    display: flex;
+    margin-top: 70px;
+}
+
+.channel-data {
+    margin-left: 30px;
 }
 
 .subscribed-card {
@@ -42,7 +51,7 @@ header {
     transition: all 500ms;
 }
 
-.subscribed-card img {
+.subscribed-card img, .channel-hero-page img {
     width: 150px;
     height: 100%;
     object-fit: cover;
