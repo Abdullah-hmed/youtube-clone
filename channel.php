@@ -78,8 +78,8 @@
                     $thumbnail = $video["video_thumbnail"];
                     echo '
                     <a href="video.php?videoID='.$videoID.'">
-                        <div class="video">
-                            <img class="thumbnail" src="'.$thumbnail.'" width="100%"><br>
+                        <div class="video" >
+                            <img class="thumbnail"  src="'.$thumbnail.'" width="100%"><br>
                             <div class="video-info">
                                 <div class="video-text">
                                     <p class="video-title">'.$videoTitle.'</p>

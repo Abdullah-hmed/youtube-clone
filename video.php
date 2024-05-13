@@ -127,6 +127,7 @@
             <p id="video-page-title"><?php echo $videoTitle ?></p>
             <div class="user-and-video-info">
                 <div class="user-subs">
+                <a href="channel.php?channelID=<?php echo $uploaderID ?>">
                     <div class="user-info">
                         <img src="pfp/<?php echo $videoChannelPFP ?>" alt="user" width="40px">
                         <div class="acc-info">
@@ -134,6 +135,7 @@
                             <p id="acc-subs"><?php echo subscriberCount($conn, $uploaderID) ?> subscribers</p>
                         </div>
                     </div>
+                </a>
                         <form action="subscribe.php" method="post">
                             <div class="subscription">
                             <input type="hidden" name="channelID" value="<?php echo $uploaderID ?>">
