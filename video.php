@@ -140,7 +140,7 @@
                             <div class="subscription">
                             <input type="hidden" name="channelID" value="<?php echo $uploaderID ?>">
                             <input type="hidden" name="videoID" value="<?php echo $videoID ?>">
-                            <input type="hidden" name="userID" value="<?php echo $_SESSION["userID"] ?>">
+                            <input type="hidden" name="userID" value="<?php if(isset($_SESSION["userID"])){ echo $_SESSION["userID"]; }?>">
                             <?php 
                                 if(isset($_SESSION["userID"])){
                                     if(subscribedOrNot($conn, $uploaderID, $_SESSION["userID"])){

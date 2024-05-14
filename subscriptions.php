@@ -21,9 +21,8 @@
     $subsStmt->bind_result($subscribedChannelID, $subscribedChannelName, $subscribedChannelPFP);
     ?>
     <div class="subs-main" id="frontpage">
-        <h1>Subscribers</h1>
+        <h1>Subscriptions</h1>
         <?php
-            // TODO: Add Create Channel Page
             while($subsStmt->fetch()){
                echo"<a href='channel.php?channelID=$subscribedChannelID'> 
                         <div class='subscribed-card'>

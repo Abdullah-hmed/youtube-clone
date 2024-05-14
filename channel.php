@@ -48,6 +48,17 @@
         $channelNameStmt->bind_result($channelName, $channelPFP);
         $channelNameStmt->fetch();
         $channelNameStmt->close();
+
+        function subscriberCount($conn, $channelID){
+            $countSql = "SELECT COUNT(*) as subscribers from subscriptions where channelID = ?;";
+            $countStmt = $conn->prepare($countSql);
+            $countStmt->bind_param("i", $channelID);
+            if($countStmt->execute()){
+                $result = $countStmt->get_result() or die();
+                $count = mysqli_fetch_assoc($result);
+                return $count['subscribers'];
+            }
+        }
     ?>
     <div class="channel-main" id="frontpage">
         <div class="channel-hero-page">
@@ -55,6 +66,7 @@
             <div class="channel-data">
                 <h1><?php echo $channelName ?></h1>
                 <h3>@<?php echo $channelName ?></h3>
+                <h4><?php echo subscriberCount($conn, $channelID) ?> Subscribers</h4>
                 <button id="subscribe" style="margin: 0;" >Subscribe</button>
             </div>
         </div>
