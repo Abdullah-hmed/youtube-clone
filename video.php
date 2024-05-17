@@ -300,7 +300,7 @@
                                     <div class="suggested-video-data">
                                         <p class="video-title">'.$suggestedTitle.'</p>
                                         <p class="user">'.$suggestedUploader.'</p>
-                                        <p class="video-stats">'.$suggestedViews.' . '.getVideoTime($suggestedDate).'</p>
+                                        <p class="video-stats">'.$suggestedViews.' views . '.getVideoTime($suggestedDate).'</p>
                                     </div>
                                 </div>
                             </a>

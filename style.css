@@ -171,7 +171,7 @@ nav a:hover {
 }
 
 .searchbar input {
-    width: 500px;
+    width: 20vw;
     border-style: solid;
     border-radius: 20px;
     border-top-right-radius: 0px;
