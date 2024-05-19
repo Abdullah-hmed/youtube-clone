@@ -7,15 +7,20 @@
             
             $comment = $_POST["comment"];
             $userID = $_SESSION["userID"];
-            $commentSql = "insert into comments (videoID, userID, comment) values (?, ?, ?)";
-            $commentStmt = $conn->prepare($commentSql);
-            $commentStmt->bind_param("iis",$videoID, $_SESSION["userID"], $comment);
-            // echo $videoID.','.$_SESSION['userID'].','.$comment;
-            if($commentStmt->execute()){
-                echo 'Query worked!';
+            if($comment != ""){
+                $commentSql = "insert into comments (videoID, userID, comment) values (?, ?, ?)";
+                $commentStmt = $conn->prepare($commentSql);
+                $commentStmt->bind_param("iis",$videoID, $_SESSION["userID"], $comment);
+                // echo $videoID.','.$_SESSION['userID'].','.$comment;
+                if($commentStmt->execute()){
+                    echo 'Query worked!';
+                }else{
+                    echo 'Query didnt work';
+                }
             }else{
-                echo 'Query didnt work';
+                echo 'Empty Comment!';
             }
+            
             echo "<script>window. close();</script>";
         }
     }

@@ -23,7 +23,7 @@
         if($video_file["size"] == 0){ //does file exist
             echo 'File does not exist!';
             $conn->close();
-            header('refresh: 3;index.html');
+            header('refresh: 3;index.php');
             exit;
         }
 
@@ -33,12 +33,12 @@
         } else{
             echo 'invalid file format';
             $conn->close();
-            header('refresh: 3;index.html');
+            header('refresh: 3;index.php');
             exit;
         }
 
         // Command to generate thumbnail using FFmpeg
-        $ffmpegCMD = "C:/ffmpeg/bin/ffmpeg -i $video_tmp_directory -ss 00:00:03 -vf scale=1280:720 -vframes 1 $thumbnail_directory";
+        $ffmpegCMD = "C:/ffmpeg/bin/ffmpeg -i $video_tmp_directory -ss 00:00:02 -vf scale=1280:720 -vframes 1 $thumbnail_directory";
         // Exsecute FFmpeg command
         exec($ffmpegCMD, $output, $returnCode);
         if ($returnCode === 0) {

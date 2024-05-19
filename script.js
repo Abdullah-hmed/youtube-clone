@@ -217,3 +217,17 @@ function updateDislikes(action){
 
   document.body.removeChild(form);
 }
+
+uploadForm = document.getElementById('uploadForm');
+loginForm = document.getElementById('loginForm');
+progressBar = document.getElementById('progressBar');
+
+//show progress spinner on video upload page
+uploadForm.addEventListener('submit', (e) => {
+  progressBar.style.display = 'block';
+})
+
+//show progress spinner on video upload page
+loginForm.addEventListener('submit', (e) => {
+  progressBar.style.display = 'block';
+})
