@@ -37,6 +37,21 @@
             exit;
         }
 
+        $error_messages = array(
+            UPLOAD_ERR_OK         => 'There is no error, the file uploaded with success',
+            UPLOAD_ERR_INI_SIZE   => 'The uploaded file exceeds the upload_max_filesize directive in php.ini',
+            UPLOAD_ERR_FORM_SIZE  => 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form',
+            UPLOAD_ERR_PARTIAL    => 'The uploaded file was only partially uploaded',
+            UPLOAD_ERR_NO_FILE    => 'No file was uploaded',
+            UPLOAD_ERR_NO_TMP_DIR => 'Missing a temporary folder',
+            UPLOAD_ERR_CANT_WRITE => 'Failed to write file to disk',
+            UPLOAD_ERR_EXTENSION  => 'A PHP extension stopped the file upload',
+        );
+
+        if($video_file["error"] != 0){
+            echo '<br>'.$error_messages[$video_file["error"]].'<br>';
+        }
+
         // Command to generate thumbnail using FFmpeg
         $ffmpegCMD = "C:/ffmpeg/bin/ffmpeg -i $video_tmp_directory -ss 00:00:02 -vf scale=1280:720 -vframes 1 $thumbnail_directory";
         // Exsecute FFmpeg command
