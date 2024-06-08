@@ -48,7 +48,7 @@
             UPLOAD_ERR_EXTENSION  => 'A PHP extension stopped the file upload',
         );
 
-        if($video_file["error"] != 0){
+        if($video_file["error"] > 0){
             echo '<br>'.$error_messages[$video_file["error"]].'<br>';
         }
 
