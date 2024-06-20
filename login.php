@@ -19,7 +19,8 @@
         $userData = mysqli_fetch_assoc($result);
         if (!$userData) {
             echo "No rows attained. User doesn't exist!" . var_dump($result);
-            header("refresh: 3;login.html"); // Redirect to login.html after 3 seconds
+            echo '<script>window.location.replace("login.html")</script>';
+            // header("refresh: 3;login.html"); // Redirect to login.html after 3 seconds
             exit();
         }
 
@@ -29,7 +30,8 @@
             
         } else{
             echo '<p style="color: red;">Username doesn\'t exist or is Invalid!</p>';
-            header("refresh: 3;login.html");
+            // header("refresh: 3;login.html");
+            echo '<script>window.location.replace("login.html")</script>';
             exit;
         }
 
@@ -54,5 +56,6 @@
     }
     $stmt->close();
     $conn->close();
-    header("refresh: 3;index.php");
+    echo '<script>window.location.replace("index.php")</script>';
+    // header("refresh: 3;index.php");
 ?>

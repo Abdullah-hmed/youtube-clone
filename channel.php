@@ -1,4 +1,7 @@
 <?php 
+    include 'header.php';
+    include 'connection.php';
+    include 'sidebar.php';
     function getVideoTime($videoUploadDate){
         date_default_timezone_set("Asia/Karachi");
         $currentTime = new DateTime('now');
@@ -38,9 +41,7 @@
     <?php 
         $channelID = $_GET["channelID"];
         echo $channelID;
-        include 'connection.php';
-        include 'header.php';
-        include 'sidebar.php';
+        
         $channelNameSql = "SELECT username, pfp FROM users WHERE userID = ?;";
         $channelNameStmt = $conn->prepare($channelNameSql);
         $channelNameStmt->bind_param("i", $channelID);

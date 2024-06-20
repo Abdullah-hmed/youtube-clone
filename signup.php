@@ -21,7 +21,8 @@
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
         echo '<p style="color: red;">Invalid Email!</p>';
         $conn->close();
-        header('refresh: 3;signup.html');
+        // header('refresh: 3;signup.html');
+        echo '<script>window.location.replace("signup.html")</script>';
     }
 
     // VALIDATE FOR IF USERNAME ALREADY EXISTS
@@ -36,7 +37,8 @@
         }else{
             echo '<p style="color: red;">Username Unavailable!</p>';
             $conn->close();
-            header('refresh: 3;signup.html');
+            // header('refresh: 3;signup.html');
+            echo '<script>window.location.replace("signup.html")</script>';
             exit;
         }
     }
@@ -45,7 +47,8 @@
     if(!preg_match('/^\S*$/', $username)){
         echo '<p style="color: red;">Remove Whitespace from username!</p>';
         $conn->close();
-        header('refresh: 3;signup.html');
+        echo '<script>window.location.replace("signup.html")</script>';
+        // header('refresh: 3;signup.html');
     }
     
     //convert password into hash
@@ -70,5 +73,6 @@
     } else {
         echo "Error: " . $stmt->error;
     }
-    header('refresh: 3;index.php');
+    echo '<script>window.location.replace("index.php")</script>';
+    // header('refresh: 3;index.php');
 ?>

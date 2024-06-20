@@ -1,3 +1,8 @@
+<?php 
+    include 'connection.php';
+    include 'header.php';
+    include 'sidebar.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +15,6 @@
     
     <script defer src="script.js"></script>
     <?php 
-    include 'connection.php';
-    include 'header.php';
-    include 'sidebar.php';
     $subsSql = "SELECT users.userID ,users.username, users.pfp 
         FROM users INNER JOIN subscriptions ON users.userID = subscriptions.channelID where subscriptions.subscriberID = ?;";
     $subsStmt = $conn->prepare($subsSql);

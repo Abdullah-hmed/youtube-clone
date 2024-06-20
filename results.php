@@ -1,4 +1,5 @@
 <?php 
+    include 'header.php';
     include 'connection.php';
 
     function getVideoTime($videoUploadDate){
@@ -36,7 +37,7 @@
 </head>
 <body>
     <?php
-        include 'header.php';
+        
         include_once 'sidebar.php';
         $searchText = $_GET["searchField"];
         $searchParam = "%$searchText%";

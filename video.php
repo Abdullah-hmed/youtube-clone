@@ -1,4 +1,5 @@
 <?php 
+    include_once 'header.php';
     include 'connection.php';
     $videoID = $_GET["videoID"];
 
@@ -117,7 +118,6 @@
 <body>
     <script defer src="script.js"></script>
     <?php
-        include_once 'header.php';
         include_once 'sidebar.php';
     ?>
 

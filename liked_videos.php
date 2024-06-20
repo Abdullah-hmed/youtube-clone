@@ -1,3 +1,8 @@
+<?php 
+    include 'connection.php';
+    include 'header.php';
+    include_once 'sidebar.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,12 +37,11 @@
             }
             return $UploadDate;
         }
-        include 'connection.php';
-        include 'header.php';
-        include_once 'sidebar.php';
+        
         if(!isset($_SESSION["userID"])){
             echo '<h1>Not Logged In! Redirecting</h1>';
-            header('refresh: 0.5s;index.php');
+            // header('refresh: 0.5s;index.php');
+            echo '<script>window.location.replace("index.php")</script>';
         }
         $likedVideoQuery = "select video.video_ID, video.video_title, video.video_description, video.video_thumbnail, users.username, users.pfp, video.video_views, video.video_upload_date from video INNER JOIN users ON video.uploaderID = users.userID INNER JOIN likes ON video.video_ID = likes.videoID where likes.userID = ?;";
         $likedVideoStmt = $conn->prepare($likedVideoQuery);

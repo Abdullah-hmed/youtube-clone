@@ -1,5 +1,6 @@
 <?php 
     // session_start();
+    include_once 'header.php';
     include 'connection.php';
 
     function getVideoTime($videoUploadDate){
@@ -41,7 +42,6 @@
 <body>
     <script src="script.js"></script>
     <?php 
-        include_once 'header.php';
         include_once 'sidebar.php';
     ?>
 
