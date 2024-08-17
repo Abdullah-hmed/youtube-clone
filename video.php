@@ -78,30 +78,37 @@
             return $count['subscribers'];
         }
     }
-    
-    function getVideoTime($videoUploadDate){
-        date_default_timezone_set("Asia/Karachi");
-        $currentTime = new DateTime('now');
-        $currentTime->format('%y %m %d %h %i %s');
-        $uploadedDateVideo = new DateTime($videoUploadDate);
+
+    function getVideoTime($videoUploadDateUTC) {
+        // Convert UTC time to user's local time
+        $user_timezone = isset($_SESSION['user_timezone']) ? $_SESSION['user_timezone'] : 'UTC';
+        $uploadedDateVideo = new DateTime($videoUploadDateUTC, new DateTimeZone('UTC'));
+        $uploadedDateVideo->setTimezone(new DateTimeZone($user_timezone));
+        
+        // Get the current time in the user's timezone
+        $currentTime = new DateTime('now', new DateTimeZone($user_timezone));
+        
+        // Calculate the difference between the uploaded date and the current time
         $UploadDiff = $uploadedDateVideo->diff($currentTime);
-
-
-        if(!$UploadDiff->format('%y') == 0){
+        
+        // Determine the time difference in a human-readable format
+        if ($UploadDiff->y != 0) {
             $UploadDate = $UploadDiff->format('%y years ago');
-        } elseif(!$UploadDiff->format('%m') == 0){
+        } elseif ($UploadDiff->m != 0) {
             $UploadDate = $UploadDiff->format('%m months ago');
-        } elseif(!$UploadDiff->format('%d') == 0){
+        } elseif ($UploadDiff->d != 0) {
             $UploadDate = $UploadDiff->format('%d days ago');
-        } elseif(!$UploadDiff->format('%h') == 0){
+        } elseif ($UploadDiff->h != 0) {
             $UploadDate = $UploadDiff->format('%h hours ago');
-        } elseif(!$UploadDiff->format('%i') == 0){
+        } elseif ($UploadDiff->i != 0) {
             $UploadDate = $UploadDiff->format('%i minutes ago');
         } else {
             $UploadDate = $UploadDiff->format('%s seconds ago');
         }
+    
         return $UploadDate;
     }
+    
 ?>
 
 
@@ -113,6 +120,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="Images/youtube.png">
+    <script src="https://unpkg.com/htmx.org@2.0.2" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous"></script>
     <title>Video Page</title>
 </head>
 <body>
@@ -123,129 +131,132 @@
 
     <main class="video-page-container">
         <div class="video-and-comments">
-        <video class="youtube-video" src=<?php echo $videoDirectory ?> controls autoplay></video>
-            <p id="video-page-title"><?php echo $videoTitle ?></p>
-            <div class="user-and-video-info">
-                <div class="user-subs">
-                <a href="channel.php?channelID=<?php echo $uploaderID ?>">
-                    <div class="user-info">
-                        <img src="pfp/<?php echo $videoChannelPFP ?>" alt="user" width="40px">
-                        <div class="acc-info">
-                            <p id="acc-name"><?php echo $videoChannelName ?></p>
-                            <p id="acc-subs"><?php echo subscriberCount($conn, $uploaderID) ?> subscribers</p>
-                        </div>
-                    </div>
-                </a>
-                        <form action="subscribe.php" method="post">
-                            <div class="subscription">
-                            <input type="hidden" name="channelID" value="<?php echo $uploaderID ?>">
-                            <input type="hidden" name="videoID" value="<?php echo $videoID ?>">
-                            <input type="hidden" name="userID" value="<?php if(isset($_SESSION["userID"])){ echo $_SESSION["userID"]; }?>">
-                            <?php 
-                                if(isset($_SESSION["userID"])){
-                                    if(subscribedOrNot($conn, $uploaderID, $_SESSION["userID"])){
-                                        echo '<input type="hidden" name="action" value="decrement">';
-                                        echo '<button style="background-color: #cfcfcf; color: black;" type="submit" id="subscribe">Subscribed</button>';
-                                    } else{
-                                        echo '<input type="hidden" name="action" value="increment">';
-                                        echo '<button type="submit" id="subscribe">Subscribe</button>';
-                                        
-                                    } 
-                                } else{
-                                    echo '<button disabled type="submit" id="subscribe">Subscribe</button>';
-                                }
-                            ?>
-                            
-                        </form>
-                    </div>
-                </div>
-                <div class="feedback-buttons">
-                    <button id="like-button" 
-                            <?php 
-                                if(!isset($_SESSION["userID"]) or videoDisliked($conn, $videoID)){
-                                    echo 'disabled';
-                                }; 
-                            ?>
-                        onclick="likeVideo()">
-                        <i id="like-icon" 
-                            class="
-                                <?php
-                                    if(videoLiked($conn, $videoID)){
-                                        echo 'fa fa-thumbs-up';
-                                    } else {
-                                        echo 'fa fa-thumbs-o-up';
-                                    }
-                            ?>">
-                        </i> 
-                        <?php echo $videoLikes ?>
-                    </button>
-
-                    <button id="dislike-button" 
-                        <?php 
-                            if(!isset($_SESSION["userID"]) or videoLiked($conn, $videoID)){
-                                
-                                echo 'disabled';
-                            };
-                        ?>
-                        onclick="dislikeVideo()">
-                        <i id="dislike-icon" 
-                            class="
-                            <?php 
-                                if(videoDisliked($conn, $videoID)){
-                                    echo 'fa fa-thumbs-down ';
-                                } else {
-                                    echo 'fa fa-thumbs-o-down ';
-                                }
-                            ?>
-                                fa-flip-horizontal">
-
-                        </i>
-                    </button>
-                    <button class="omittable-button"><i class="fa fa-share"></i> Share</button>
-                    <button class="omittable-button"><i class="fa fa-download"></i> Download</button>
-                    <button class="omittable-button"><i class="fa fa-scissors"></i> Clip</button>
-                    <button class="omittable-button"><i class="fa fa-ellipsis-h"></i></button>
-                </div>
-            </div>
-            <div class="description">
-                <div class="description-data">
-                    <p id="description-date"><?php echo $videoViews.' views . '.getVideoTime($videoUploadDate) ?></p>
-                    <!-- <p id="description-tags">#programming #compsci #learntocode</p> -->
-                </div>
-                <p id="description-text"> <?php echo $videoDescription ?> </p>
-
-                <!-- <p id="read-more">... more</p> -->
-            </div>
-            <div class="comments-section">
-                <div class="comment-title">
-                    <p id="Comments-title">Comments</p>
-                    <button id="sort-by"><i class="fa fa-sort"></i> Sort By</button>
-                </div>
-                <?php 
-                    if(isset($_SESSION["userID"])){
-                        echo '<div class="comment-area">
-                        <img src="Images/user.png" width="40px">
-                        <div class="comment-write">
-                            <input type="text" name="comment-writer" id="comment-writer" onkeypress="handleCommentWriter(event)" placeholder="Add a comment...">
-                            <div class="comment-submit">
-                                <button>😊</button>
-                                <div class="comment-cancel">
-                                    <button>Cancel</button>
-                                    <button id="submit-button" onclick="makeComment()">Comment</button>
+            <video class="youtube-video" src=<?php echo $videoDirectory ?> controls autoplay></video>
+                <p id="video-page-title"><?php echo $videoTitle ?></p>
+                    <div class="user-and-video-info">
+                        <div class="user-subs">
+                            <a href="channel.php?channelID=<?php echo $uploaderID ?>">
+                                <div class="user-info">
+                                    <img src="pfp/<?php echo $videoChannelPFP ?>" alt="user" width="40px">
+                                    <div class="acc-info">
+                                        <p id="acc-name"><?php echo $videoChannelName ?></p>
+                                        <p id="acc-subs"><?php echo subscriberCount($conn, $uploaderID) ?> subscribers</p>
+                                    </div>
                                 </div>
+                            </a>
+                            <form id="subscription-form" method="post" hx-post="subscribe.php" hx-swap="outerHTML">
+                                <div class="subscription">
+                                    <input type="hidden" name="channelID" value="<?php echo $uploaderID; ?>">
+                                    <input type="hidden" name="videoID" value="<?php echo $videoID; ?>">
+                                    <input type="hidden" name="userID" value="<?php echo $_SESSION['userID'] ?? ''; ?>">
+                                    <input type="hidden" name="action" id="subscribe-action" value="<?php echo subscribedOrNot($conn, $uploaderID, $_SESSION['userID']) ? 'decrement' : 'increment'; ?>">
+                                    <button type="submit" id="subscribe">
+                                        <?php echo subscribedOrNot($conn, $uploaderID, $_SESSION['userID']) ? 'Subscribed' : 'Subscribe'; ?>
+                                    </button>
+                                </div>
+                            </form>
+
+
+                        </div>
+                    <div class="feedback-buttons">
+                        <button id="like-button" 
+                                <?php 
+                                    if(!isset($_SESSION["userID"]) or videoDisliked($conn, $videoID)){
+                                        echo 'disabled';
+                                    }; 
+                                ?>
+                            onclick="likeVideo()">
+                            <i id="like-icon" 
+                                class="
+                                    <?php
+                                        if(videoLiked($conn, $videoID)){
+                                            echo 'fa fa-thumbs-up';
+                                        } else {
+                                            echo 'fa fa-thumbs-o-up';
+                                        }
+                                ?>">
+                            </i> 
+                            <?php echo $videoLikes ?>
+                        </button>
+
+                        <button id="dislike-button" 
+                            <?php 
+                                if(!isset($_SESSION["userID"]) or videoLiked($conn, $videoID)){
+                                    
+                                    echo 'disabled';
+                                };
+                            ?>
+                            onclick="dislikeVideo()">
+                            <i id="dislike-icon" 
+                                class="
+                                <?php 
+                                    if(videoDisliked($conn, $videoID)){
+                                        echo 'fa fa-thumbs-down ';
+                                    } else {
+                                        echo 'fa fa-thumbs-o-down ';
+                                    }
+                                ?>
+                                    fa-flip-horizontal">
+
+                            </i>
+                        </button>
+                        <button class="omittable-button"><i class="fa fa-share"></i> Share</button>
+                        <button class="omittable-button"><i class="fa fa-download"></i> Download</button>
+                        <button class="omittable-button"><i class="fa fa-scissors"></i> Clip</button>
+                        <button class="omittable-button"><i class="fa fa-ellipsis-h"></i></button>
+                    </div>
+                </div>
+                <div class="description">
+                    <div class="description-data">
+                        <p id="description-date"><?php echo $videoViews.' views . '.getVideoTime($videoUploadDate) ?></p>
+                    </div>
+                    <p id="description-text"> <?php echo $videoDescription ?> </p>
+
+                </div>
+                <div class="comments-section">
+                    <div class="comment-title">
+                        <p id="Comments-title">Comments</p>
+                        <button id="sort-by"><i class="fa fa-sort"></i> Sort By</button>
+                    </div>
+                    <div class="comment-area">
+                    <div class="user-info">
+                        <img src="
+                        <?php 
+                            if($_SESSION["loginStatus"] == True){
+                                echo 'pfp/'.$pfp;
+                            } else {
+                                echo 'Images/user.png';
+                            }
+                        ?>
+                        " width="40px">
+                    </div>
+                    <div class="comment-write">
+                        <input type="hidden" id="videoID" name="videoID" value="<?php echo $videoID; ?>">
+                        <input type="text" name="comment" id="comment-writer" required placeholder="Add a comment...">
+                        <div class="comment-submit">
+                            <button>😊</button>
+                            <div class="comment-cancel">
+                                <button>Cancel</button>
+                                <button id="submit-button" <?php disableIfNotLoggedIn(); ?>
+                                        hx-post="/make_comment.php"
+                                        hx-target=".comments-container"
+                                        hx-swap="afterbegin"
+                                        hx-include="[name=videoID], [name=comment]">
+                                    Comment
+                                </button>
                             </div>
                         </div>
-                    </div>';
-                    }
-                ?>
-                
+                    </div>
+
+                </div>
+                    
                 <br>
                 <div class="comments-container">
                     <?php 
 
                         $commentSql = "select comments.comment, users.username, users.pfp, comments.time 
                         from comments INNER JOIN users 
-                        ON comments.userID = users.userID where videoID =".$_GET["videoID"];
+                        ON comments.userID = users.userID where videoID = ".$_GET["videoID"]." ORDER BY comments.time DESC";
                         $result = $conn->query($commentSql);
                         if($result->num_rows > 0){
                             while($comment = $result->fetch_assoc()){
@@ -265,14 +276,12 @@
                                     </div>
                                 </div>';
                             }
-                        }
-                            
-                        
+                        }                    
                     ?>
                 </div>
             </div>
-            </div>
         </div>
+
         <aside>
             <div class="tag-container">
                 <div class="tags">

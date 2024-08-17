@@ -36,10 +36,19 @@
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
+    <script src="https://unpkg.com/htmx.org@2.0.2" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous"></script>
     <title>YouTube</title>
 </head>
 
 <body>
+
+    <div id="timezone-setter" 
+         hx-post="set_timezone.php" 
+         hx-trigger="load" 
+         hx-vals="js:{timezone: Intl.DateTimeFormat().resolvedOptions().timeZone}">
+    </div>
+
+
     <script src="script.js"></script>
     <?php 
         include_once 'sidebar.php';
