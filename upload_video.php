@@ -16,7 +16,7 @@
         $newFileName = $videoName.'.mp4';
         $video_directory = "uploaded_videos/".$newFileName;
 
-        $thumbnailName = $videoName.'.jpg';
+        $thumbnailName = $videoName.'.webp';
         $thumbnail_directory = "thumbnails/".$thumbnailName;
         echo $thumbnail_directory.'<br>';
         
@@ -53,9 +53,10 @@
         }
 
         // Command to generate thumbnail using FFmpeg
-        $ffmpegCMD = "C:/ffmpeg/bin/ffmpeg -i $video_tmp_directory -ss 00:00:02 -vf scale=1280:720 -vframes 1 $thumbnail_directory";
-        // Exsecute FFmpeg command
-        exec($ffmpegCMD, $output, $returnCode);
+        $ffmpegCMD = "ffmpeg -i $video_tmp_directory -ss 00:00:01 -vf scale=1280:720 -vframes 1 $thumbnail_directory";
+        // Execute FFmpeg command
+        exec($ffmpegCMD . ' 2>&1', $output, $returnCode);
+
         if ($returnCode === 0) {
             echo "<br>Thumbnail generated successfully.";
             $sqlQuery = "Insert into video(video_title, video_description, video_directory, video_thumbnail, uploaderID) values(?, ?, ?, ?, ?)";
@@ -68,13 +69,6 @@
             $stmt->bind_param("sssi",$video_title, $video_description, $video_directory, $_SESSION["userID"]);
         }
 
-        
-
-        
-
-
-
-        
         if ($stmt->execute()) {
             move_uploaded_file($video_file["tmp_name"], $video_directory);
 

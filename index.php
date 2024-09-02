@@ -3,27 +3,33 @@
     include_once 'header.php';
     include 'connection.php';
 
-    function getVideoTime($videoUploadDate){
-        date_default_timezone_set("Asia/Karachi");
-        $currentTime = new DateTime('now');
-        $currentTime->format('%y %m %d %h %i %s');
-        $uploadedDateVideo = new DateTime($videoUploadDate);
+    function getVideoTime($videoUploadDateUTC) {
+        // Convert UTC time to user's local time
+        $user_timezone = isset($_SESSION['user_timezone']) ? $_SESSION['user_timezone'] : 'UTC';
+        $uploadedDateVideo = new DateTime($videoUploadDateUTC, new DateTimeZone('UTC'));
+        $uploadedDateVideo->setTimezone(new DateTimeZone($user_timezone));
+        
+        // Get the current time in the user's timezone
+        $currentTime = new DateTime('now', new DateTimeZone($user_timezone));
+        
+        // Calculate the difference between the uploaded date and the current time
         $UploadDiff = $uploadedDateVideo->diff($currentTime);
-
-
-        if(!$UploadDiff->format('%y') == 0){
+        
+        // Determine the time difference in a human-readable format
+        if ($UploadDiff->y != 0) {
             $UploadDate = $UploadDiff->format('%y years ago');
-        } elseif(!$UploadDiff->format('%m') == 0){
+        } elseif ($UploadDiff->m != 0) {
             $UploadDate = $UploadDiff->format('%m months ago');
-        } elseif(!$UploadDiff->format('%d') == 0){
+        } elseif ($UploadDiff->d != 0) {
             $UploadDate = $UploadDiff->format('%d days ago');
-        } elseif(!$UploadDiff->format('%h') == 0){
+        } elseif ($UploadDiff->h != 0) {
             $UploadDate = $UploadDiff->format('%h hours ago');
-        } elseif(!$UploadDiff->format('%i') == 0){
+        } elseif ($UploadDiff->i != 0) {
             $UploadDate = $UploadDiff->format('%i minutes ago');
         } else {
             $UploadDate = $UploadDiff->format('%s seconds ago');
         }
+    
         return $UploadDate;
     }
 ?>

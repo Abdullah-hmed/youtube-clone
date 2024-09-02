@@ -68,55 +68,6 @@ function handleCommentWriter(event){ //method to call makeComment method when us
   }
 }
 
-function makeComment(){
-  const commentContainer = document.querySelector(".comments-container");
-  var commentText = document.getElementsByName("comment-writer")[0];
-  console.log(commentText);
-  var commentHTML = `
-                <div class="comments">
-                  <img src="Images/user.png" width="30px">
-                  <div class="comments-data">
-                      <div class="comment-name-date">
-                          <p class="comment-name">User</p>
-                          <p class="comment-date">`+printCurrentTime()+`</p>
-                      </div>
-                      <p class="comment-text">`+commentText.value+`</p>
-                      <div class="feedback">
-                          <button class="comment-feedback"><i class="fa fa-thumbs-up"></i></button>
-                          <button class="comment-feedback"><i class="fa fa-thumbs-down fa-flip-horizontal"></i></button>
-                          <button class="comment-feedback"><p>Reply</p></button>
-                      </div>
-                  </div>
-                </div>`
-                ;
-  commentContainer.insertAdjacentHTML('afterbegin', commentHTML);
-  
-  var form = document.createElement('form');
-  form.method = 'post';
-  form.action = 'make_comment.php';
-  form.target = '_blank';
-
-  var comment = document.createElement('input');
-  comment.type = 'hidden';
-  comment.name = 'comment';
-  comment.value = commentText.value;
-
-  form.appendChild(comment);
-
-  var ID = document.createElement('input');
-  ID.type = 'hidden';
-  ID.name = 'videoID';
-  ID.value = videoID;
-
-  form.appendChild(ID);
-
-  document.body.appendChild(form);
-  form.submit();
-  document.body.removeChild(form);
-
-  commentText.value = "";
-}
-
 function onUserInfoClick(){
   // document.querySelector('.dropdown').style.display = 'flex';
   const dropdown = document.querySelector('.dropdown');
